@@ -113,6 +113,16 @@ function scrollToListings(){
   window.scrollTo({top,behavior:'smooth'});
 }
 
+function updateScrollFades(){
+  const wrap=document.querySelector('.pill-scroll-wrap');
+  const track=el('categoryGrid');
+  if(!wrap||!track)return;
+  const canRight=track.scrollWidth-track.clientWidth-track.scrollLeft>4;
+  const canLeft=track.scrollLeft>4;
+  wrap.classList.toggle('can-scroll-right',canRight);
+  wrap.classList.toggle('can-scroll-left',canLeft);
+}
+
 function renderCategories(){
   const total=businesses.length;
   const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">🌴</span>Todos</button>`]
@@ -132,6 +142,7 @@ function renderCategories(){
   });
   el('categoryCount').textContent=categories.length;
   void total;
+  updateScrollFades();
 }
 
 function filtered(){
@@ -284,6 +295,9 @@ el('installBtn').addEventListener('click',async()=>{
   el('installBtn').classList.add('hidden');
 });
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+
+el('categoryGrid').addEventListener('scroll',updateScrollFades);
+window.addEventListener('resize',updateScrollFades);
 
 renderCategories();
 renderBusinesses();

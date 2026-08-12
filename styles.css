@@ -85,8 +85,14 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 /* ---------- STICKY FILTER BAR ---------- */
 .filter-bar-sticky{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0;margin-top:-40px}
 .filter-row{display:flex;align-items:center;gap:14px}
-.pill-scroll{display:flex;gap:8px;overflow-x:auto;flex:1;scrollbar-width:none;padding:2px}
+.pill-scroll-wrap{position:relative;flex:1;min-width:0;display:flex;align-items:center}
+.pill-scroll{display:flex;gap:8px;overflow-x:auto;flex:1;scrollbar-width:none;padding:2px 4px;scroll-behavior:smooth}
 .pill-scroll::-webkit-scrollbar{display:none}
+.scroll-fade{position:absolute;top:0;bottom:0;width:34px;pointer-events:none;z-index:2;opacity:0;transition:opacity .2s ease}
+.fade-left{left:0;background:linear-gradient(to right,var(--bg),rgba(246,251,242,0))}
+.fade-right{right:0;background:linear-gradient(to left,var(--bg),rgba(246,251,242,0))}
+.pill-scroll-wrap.can-scroll-right .fade-right{opacity:1}
+.pill-scroll-wrap.can-scroll-left .fade-left{opacity:1}
 .cat-pill{flex-shrink:0;display:flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--card);padding:9px 15px 9px 11px;border-radius:var(--radius-pill);font-weight:700;font-size:.85rem;color:var(--ink);white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
 .cat-pill .ic{font-size:1rem;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg)}
 .cat-pill:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
