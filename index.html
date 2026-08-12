@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f5132" />
+  <meta name="description" content="Directorio comercial y de servicios de Puerto Jiménez, Costa Rica." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Puerto Jiménez Directorio</title>
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav wrap">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <span class="brand-mark">PJ</span>
+        <span>Puerto Jiménez <b>Directorio</b></span>
+      </a>
+      <button id="installBtn" class="ghost hidden">Instalar app</button>
+    </nav>
+    <div class="wrap hero-content" id="inicio">
+      <p class="eyebrow">🌴 Osa, Puntarenas, Costa Rica</p>
+      <h1>Todo Puerto Jiménez, a un toque.</h1>
+      <p class="hero-copy">Encuentra comercios, comida, hospedaje, turismo, transporte, salud y servicios locales.</p>
+      <label class="searchbox">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Buscar negocio, servicio o categoría…" autocomplete="off" />
+      </label>
+      <div class="quick-stats">
+        <span><strong id="businessCount">0</strong> negocios</span>
+        <span><strong id="categoryCount">0</strong> categorías</span>
+        <span>Hecho para residentes y visitantes</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main-content">
+    <section aria-labelledby="cat-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow dark">Explora</p>
+          <h2 id="cat-title">Categorías</h2>
+        </div>
+        <button id="clearFilters" class="text-btn">Ver todo</button>
+      </div>
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+
+    <section aria-labelledby="featured-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow dark">Descubre local</p>
+          <h2 id="featured-title">Negocios y servicios</h2>
+        </div>
+        <span id="resultLabel" class="muted"></span>
+      </div>
+      <div id="businessGrid" class="business-grid"></div>
+      <div id="emptyState" class="empty hidden">
+        <div class="empty-icon">🧭</div>
+        <h3>No encontramos resultados</h3>
+        <p>Prueba con otra búsqueda o limpia los filtros.</p>
+      </div>
+    </section>
+
+    <section class="cta-card">
+      <div>
+        <p class="eyebrow">Comercio local</p>
+        <h2>¿Tu negocio no aparece?</h2>
+        <p>Esta versión inicial está preparada para recibir solicitudes y fichas comerciales verificadas.</p>
+      </div>
+      <a class="primary-btn" href="mailto:directorio@example.com?subject=Quiero%20agregar%20mi%20negocio">Solicitar inclusión</a>
+    </section>
+  </main>
+
+  <dialog id="businessDialog" class="business-dialog">
+    <button id="closeDialog" class="dialog-close" aria-label="Cerrar">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div><strong>Puerto Jiménez Directorio</strong><p>Una guía digital para descubrir y apoyar lo local.</p></div>
+      <p>Puerto Jiménez · Península de Osa · Costa Rica</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
