@@ -9,61 +9,58 @@ const categories=[
 {id:'otros',name:'Otros',icon:'📍'}
 ];
 
-// Datos DEMO: reemplazar con negocios verificados antes de publicar oficialmente.
+// Directorio inicial de establecimientos reales encontrados en fuentes públicas.
+// Los horarios y teléfonos pueden cambiar; conviene verificarlos periódicamente.
 const businesses=[
-{id:1,name:'Café Osa Demo',category:'comida',icon:'☕',desc:'Ejemplo de ficha para cafetería o restaurante local.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Horario por confirmar',featured:true},
-{id:2,name:'Hospedaje Corcovado Demo',category:'hospedaje',icon:'🌿',desc:'Ejemplo de hospedaje para mostrar fotos, servicios y ubicación.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Recepción por confirmar',featured:true},
-{id:3,name:'Tours Golfo Dulce Demo',category:'turismo',icon:'🐬',desc:'Ejemplo para operadores turísticos, guías y experiencias locales.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Con reserva',featured:true},
-{id:4,name:'Mercado Local Demo',category:'compras',icon:'🛒',desc:'Ejemplo para supermercados, pulperías y tiendas de conveniencia.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Horario por confirmar'},
-{id:5,name:'Servicio Técnico Demo',category:'servicios',icon:'🔧',desc:'Ejemplo para talleres, electricidad, reparación y servicios profesionales.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Horario por confirmar'},
-{id:6,name:'Taxi Puerto Jiménez Demo',category:'transporte',icon:'🚕',desc:'Ejemplo para taxis, transporte privado y traslados.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Disponibilidad por confirmar'},
-{id:7,name:'Bienestar Osa Demo',category:'salud',icon:'🩺',desc:'Ejemplo para clínicas, farmacias, fisioterapia y bienestar.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Horario por confirmar'},
-{id:8,name:'Emprendimiento Local Demo',category:'otros',icon:'🌺',desc:'Espacio para artesanía, emprendimientos y otros servicios de la comunidad.',address:'Puerto Jiménez, Osa',phone:'',whatsapp:'',hours:'Horario por confirmar'}
+{id:1,name:'El Rinconcito Saboroso',category:'comida',icon:'🍛',desc:'Restaurante de comida costarricense en la vía principal de Puerto Jiménez.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'+506 2735 5908',whatsapp:'',hours:'Consultar horario actual',featured:true},
+{id:2,name:'Restaurante La Toscana',category:'comida',icon:'🍝',desc:'Restaurante ubicado en Puerto Jiménez, Península de Osa.',address:'Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:3,name:'Restaurante Guapira',category:'comida',icon:'🍽️',desc:'Restaurante en la zona de Puerto Jiménez con cocina internacional y tropical.',address:'Puerto Jiménez, Puntarenas',phone:'+506 8371 1708',whatsapp:'',hours:'Desayuno, almuerzo y cena; confirmar horario'},
+{id:4,name:'Panadería Monar',category:'comida',icon:'🥐',desc:'Panadería local ubicada sobre Calle Central.',address:'Calle Central, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:5,name:'Cabinas Jiménez',category:'hospedaje',icon:'🏨',desc:'Hospedaje en Puerto Jiménez con acceso a playa, piscina y servicios para visitantes.',address:'Puerto Jiménez, Puntarenas',phone:'+506 2735 5090',whatsapp:'',hours:'Consultar recepción',featured:true},
+{id:6,name:'Aparthotel Herrera',category:'hospedaje',icon:'🏨',desc:'Aparthotel ubicado cerca del Banco Nacional en el centro de Puerto Jiménez.',address:'50 m este del Banco Nacional, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar recepción'},
+{id:7,name:'Corcovado Beach Lodge',category:'hospedaje',icon:'🌴',desc:'Lodge en Puerto Jiménez, punto práctico para explorar la Península de Osa.',address:'GPQ2+P38, Puerto Jiménez, Puntarenas',phone:'+506 2735 6000',whatsapp:'',hours:'Consultar recepción'},
+{id:8,name:'Cabinas Marcelina',category:'hospedaje',icon:'🛏️',desc:'Cabinas ubicadas en el centro de Puerto Jiménez.',address:'GMPV+CQW, Puerto Jiménez, Puntarenas',phone:'+506 2735 5007',whatsapp:'',hours:'Consultar recepción'},
+{id:9,name:'Cabinas The Corner',category:'hospedaje',icon:'🛏️',desc:'Hostal con habitaciones privadas y compartidas en Puerto Jiménez.',address:'50 m oeste de la Fiscalía, Puerto Jiménez, Puntarenas',phone:'+506 2735 5328',whatsapp:'',hours:'Consultar recepción'},
+{id:10,name:'Corcovado Tours',category:'turismo',icon:'🦜',desc:'Operador local de tours y experiencias en Corcovado y la Península de Osa.',address:'Calle al Manglar, Puerto Jiménez, Puntarenas',phone:'+506 8432 8686',whatsapp:'50684328686',hours:'07:00–19:00; confirmar',featured:true},
+{id:11,name:'Corcovado Wild Tours',category:'turismo',icon:'🐾',desc:'Operador turístico y agencia de experiencias de naturaleza desde Puerto Jiménez.',address:'300 m sur del Muelle Público, Puerto Jiménez, Puntarenas',phone:'+506 8450 6783',whatsapp:'50684506783',hours:'Servicio reportado 24 horas',featured:true},
+{id:12,name:'Rainforest Chronicles',category:'turismo',icon:'📷',desc:'Empresa local de naturaleza, observación de fauna, aves y expediciones en Corcovado.',address:'Monterrey de Cañaza, Puerto Jiménez, Puntarenas',phone:'+506 8843 2896',whatsapp:'50688432896',hours:'Consultar disponibilidad'},
+{id:13,name:'Eco Expeditions CR',category:'turismo',icon:'🥾',desc:'Tours de naturaleza, caminatas, aves, delfines y experiencias en la Península de Osa.',address:'Urbanización El Colegio, Puerto Jiménez, Puntarenas',phone:'+506 8725 8081',whatsapp:'50687258081',hours:'Consultar disponibilidad'},
+{id:14,name:'Ikara Explore',category:'turismo',icon:'🛶',desc:'Experiencias de kayak, manglar y naturaleza en Golfo Dulce.',address:'Corcovado Beach Lodge, Puerto Jiménez, Puntarenas',phone:'+506 8763 0057',whatsapp:'50687630057',hours:'Consultar disponibilidad'},
+{id:15,name:'Kendry Tours',category:'turismo',icon:'🚤',desc:'Operador de paseos en bote y experiencias acuáticas desde Puerto Jiménez.',address:'200 m suroeste de Grupo Materiales, Puerto Jiménez, Puntarenas',phone:'+506 8642 5203',whatsapp:'50686425203',hours:'09:00–18:00; confirmar'},
+{id:16,name:'Blessing Tours Puerto Jiménez',category:'turismo',icon:'🐬',desc:'Tours de pesca, delfines, snorkel y experiencias en Golfo Dulce.',address:'Puerto Jiménez, Puntarenas',phone:'+506 8834 3290',whatsapp:'50688343290',hours:'07:00–17:00; confirmar'},
+{id:17,name:'Palí Puerto Jiménez',category:'compras',icon:'🛒',desc:'Supermercado en el centro de Puerto Jiménez.',address:'Puerto Jiménez, Puntarenas',phone:'+506 800 800 0722',whatsapp:'',hours:'Horario variable; confirmar',featured:true},
+{id:18,name:'Mima Market',category:'compras',icon:'🛒',desc:'Supermercado local en el sector Aeropuerto Oeste.',address:'Aeropuerto Oeste, Puerto Jiménez, Puntarenas',phone:'+506 2735 5033',whatsapp:'',hours:'Lun-Sáb 08:00–21:00; Dom 09:00–18:00'},
+{id:19,name:'Supermercado BM Corcovado',category:'compras',icon:'🛒',desc:'Supermercado de la cadena BM en Puerto Jiménez.',address:'Calle Central, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:20,name:'Súper Corcovado',category:'compras',icon:'🛒',desc:'Supermercado local sobre la Ruta 245.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:21,name:'Mini Súper Paula',category:'compras',icon:'🛒',desc:'Mini supermercado local en Puerto Jiménez.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:22,name:'Mini Súper JD',category:'compras',icon:'🛒',desc:'Mini supermercado local sobre la Ruta 245.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:23,name:'El Mercadito de Osa',category:'compras',icon:'🥬',desc:'Frutería y verdulería local.',address:'Avenida 1, Puerto Jiménez, Puntarenas',phone:'+506 2735 5460',whatsapp:'',hours:'Consultar horario actual'},
+{id:24,name:'Monge Puerto Jiménez',category:'compras',icon:'📱',desc:'Electrodomésticos, tecnología, muebles y otros artículos.',address:'150 m sur del Banco Nacional, Puerto Jiménez, Puntarenas',phone:'+506 4032 4803',whatsapp:'50670217100',hours:'Lun-Jue 09:00–18:00; Vie-Sáb 08:30–18:00'},
+{id:25,name:'Zapatería Mary',category:'compras',icon:'👟',desc:'Tienda local de ropa y calzado.',address:'GMQV+W72, Puerto Jiménez, Puntarenas',phone:'+506 8995 2266',whatsapp:'',hours:'Consultar horario actual'},
+{id:26,name:'La Casite de Osa',category:'compras',icon:'👕',desc:'Tienda de ropa ubicada en Calle Central.',address:'Calle Central, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:27,name:'Lakos Surf Shop',category:'compras',icon:'🏄',desc:'Tienda de surf y ropa en Puerto Jiménez.',address:'Calle 2, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:28,name:'Tienda y Zapatería El Regalón',category:'compras',icon:'🛍️',desc:'Tienda y zapatería ubicada sobre Calle Central en Puerto Jiménez.',address:'Calle Central, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:29,name:'Sacred Nature',category:'compras',icon:'🎁',desc:'Tienda de regalos y artículos locales.',address:'Avenida 0, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:30,name:'Colono Construcción Puerto Jiménez',category:'servicios',icon:'🔨',desc:'Ferretería, materiales de construcción, electricidad, iluminación y herramientas.',address:'Costado de Bomba Osa, Puerto Jiménez, Puntarenas',phone:'+506 2735 5703',whatsapp:'',hours:'Consultar horario actual',featured:true},
+{id:31,name:'Ferretería Cerro de Oro',category:'servicios',icon:'🔧',desc:'Ferretería sobre la Ruta 245 en Puerto Jiménez.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:32,name:'Banco Nacional • Puerto Jiménez',category:'servicios',icon:'🏦',desc:'Sucursal bancaria y servicios financieros en Puerto Jiménez.',address:'Ruta 245, Puerto Jiménez, Puntarenas',phone:'+506 2735 5020',whatsapp:'',hours:'Lun-Vie 09:00–16:20'},
+{id:33,name:'Banco de Costa Rica • Puerto Jiménez',category:'servicios',icon:'🏦',desc:'Sucursal del Banco de Costa Rica en Puerto Jiménez.',address:'Costado sur de la Iglesia Católica, Puerto Jiménez, Puntarenas',phone:'+506 2211 1111',whatsapp:'',hours:'Consultar horario actual'},
+{id:34,name:'Servicentro Puerto Jiménez',category:'transporte',icon:'⛽',desc:'Estación de servicio en Calle del Colegio.',address:'Calle del Colegio, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario actual'},
+{id:35,name:'Bomba Osa',category:'transporte',icon:'⛽',desc:'Estación de combustible en Puerto Jiménez.',address:'Calle del Colegio, Puerto Jiménez, Puntarenas',phone:'+506 2735 5446',whatsapp:'',hours:'Consultar horario actual'},
+{id:36,name:'Alamo Car Rental',category:'transporte',icon:'🚙',desc:'Alquiler de vehículos frente al aeropuerto de Puerto Jiménez.',address:'Frente al Aeropuerto de Puerto Jiménez, Puntarenas',phone:'+506 2735 5175',whatsapp:'',hours:'08:00–17:00; confirmar'},
+{id:37,name:'National Car Rental',category:'transporte',icon:'🚗',desc:'Alquiler de vehículos frente al aeropuerto de Puerto Jiménez.',address:'Frente al Aeropuerto de Puerto Jiménez, Puntarenas',phone:'+506 2735 5175',whatsapp:'',hours:'Consultar horario actual'},
+{id:38,name:'Farmacia Puerto Jiménez / Hidalgo',category:'salud',icon:'💊',desc:'Farmacia local en el centro de Puerto Jiménez.',address:'Calle Central / Ruta 245, Puerto Jiménez, Puntarenas',phone:'+506 2735 5564',whatsapp:'',hours:'Lun-Sáb aprox. 08:00–19:00'},
+{id:39,name:'Clínica CCSS Puerto Jiménez',category:'salud',icon:'🏥',desc:'Centro de atención de la Caja Costarricense de Seguro Social.',address:'Avenida 7, Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Consultar horario de atención'},
+{id:40,name:'Aeropuerto de Puerto Jiménez',category:'otros',icon:'✈️',desc:'Aeropuerto local que conecta Puerto Jiménez con otros destinos de Costa Rica.',address:'Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Según itinerarios de vuelos'}
 ];
 
 let activeCategory='all';
 const el=id=>document.getElementById(id);
 const normalize=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const catName=id=>categories.find(c=>c.id===id)?.name||'Otro';
-
-function renderCategories(){
-  el('categoryGrid').innerHTML=categories.map(c=>`<button class="category-card ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="category-icon">${c.icon}</span><strong>${c.name}</strong><small>${businesses.filter(b=>b.category===c.id).length} ${businesses.filter(b=>b.category===c.id).length===1?'negocio':'negocios'}</small></button>`).join('');
-  document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.dataset.cat;renderCategories();renderBusinesses()}));
-}
-
-function filtered(){
-  const q=normalize(el('searchInput').value);
-  return businesses.filter(b=>{
-    const inCat=activeCategory==='all'||b.category===activeCategory;
-    const hay=normalize(`${b.name} ${b.desc} ${catName(b.category)} ${b.address}`).includes(q);
-    return inCat&&hay;
-  });
-}
-
-function renderBusinesses(){
-  const list=filtered();
-  el('resultLabel').textContent=`${list.length} resultado${list.length===1?'':'s'}`;
-  el('businessGrid').innerHTML=list.map(b=>`<article class="business-card"><div class="business-cover">${b.icon}</div><div class="business-body"><div class="business-title-row"><h3 class="business-title">${b.name}</h3>${b.featured?'<span class="badge">Destacado</span>':''}</div><p class="business-desc">${b.desc}</p><div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div><div class="card-actions"><button class="details-btn" data-id="${b.id}">Ver ficha</button><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}">Mapa</a></div></div></article>`).join('');
-  el('emptyState').classList.toggle('hidden',list.length>0);
-  document.querySelectorAll('.details-btn').forEach(btn=>btn.addEventListener('click',()=>openBusiness(Number(btn.dataset.id))));
-}
-
-function openBusiness(id){
-  const b=businesses.find(x=>x.id===id); if(!b)return;
-  const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';
-  const wa=b.whatsapp?`<a href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" target="_blank" rel="noopener">WhatsApp</a>`:'';
-  el('dialogContent').innerHTML=`<div class="dialog-hero"><div class="emoji">${b.icon}</div></div><div class="dialog-body"><p class="eyebrow dark">${catName(b.category)}</p><h2>${b.name}</h2><p>${b.desc}</p><div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}</div><div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}">Cómo llegar</a></div></div>`;
-  el('businessDialog').showModal();
-}
-
-el('closeDialog').addEventListener('click',()=>el('businessDialog').close());
-el('businessDialog').addEventListener('click',e=>{if(e.target===el('businessDialog'))el('businessDialog').close()});
-el('searchInput').addEventListener('input',renderBusinesses);
-el('clearFilters').addEventListener('click',()=>{activeCategory='all';el('searchInput').value='';renderCategories();renderBusinesses()});
-el('businessCount').textContent=businesses.length;el('categoryCount').textContent=categories.length;
-
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden')});
-el('installBtn').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;el('installBtn').classList.add('hidden')});
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
-renderCategories();renderBusinesses();
+function renderCategories(){el('categoryGrid').innerHTML=categories.map(c=>`<button class="category-card ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="category-icon">${c.icon}</span><strong>${c.name}</strong><small>${businesses.filter(b=>b.category===c.id).length} ${businesses.filter(b=>b.category===c.id).length===1?'negocio':'negocios'}</small></button>`).join('');document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.dataset.cat;renderCategories();renderBusinesses()}));}
+function filtered(){const q=normalize(el('searchInput').value);return businesses.filter(b=>{const inCat=activeCategory==='all'||b.category===activeCategory;const hay=normalize(`${b.name} ${b.desc} ${catName(b.category)} ${b.address}`).includes(q);return inCat&&hay;});}
+function renderBusinesses(){const list=filtered();el('resultLabel').textContent=`${list.length} resultado${list.length===1?'':'s'}`;el('businessGrid').innerHTML=list.map(b=>`<article class="business-card"><div class="business-cover">${b.icon}</div><div class="business-body"><div class="business-title-row"><h3 class="business-title">${b.name}</h3>${b.featured?'<span class="badge">Destacado</span>':''}</div><p class="business-desc">${b.desc}</p><div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div><div class="card-actions"><button class="details-btn" data-id="${b.id}">Ver ficha</button><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Mapa</a></div></div></article>`).join('');el('emptyState').classList.toggle('hidden',list.length>0);document.querySelectorAll('.details-btn').forEach(btn=>btn.addEventListener('click',()=>openBusiness(Number(btn.dataset.id))));}
+function openBusiness(id){const b=businesses.find(x=>x.id===id);if(!b)return;const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';const wa=b.whatsapp?`<a href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" target="_blank" rel="noopener">WhatsApp</a>`:'';el('dialogContent').innerHTML=`<div class="dialog-hero"><div class="emoji">${b.icon}</div></div><div class="dialog-body"><p class="eyebrow dark">${catName(b.category)}</p><h2>${b.name}</h2><p>${b.desc}</p><div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}</div><div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Cómo llegar</a></div></div>`;el('businessDialog').showModal();}
+el('closeDialog').addEventListener('click',()=>el('businessDialog').close());el('businessDialog').addEventListener('click',e=>{if(e.target===el('businessDialog'))el('businessDialog').close()});el('searchInput').addEventListener('input',renderBusinesses);el('clearFilters').addEventListener('click',()=>{activeCategory='all';el('searchInput').value='';renderCategories();renderBusinesses()});el('businessCount').textContent=businesses.length;el('categoryCount').textContent=categories.length;
+let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden')});el('installBtn').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;el('installBtn').classList.add('hidden')});if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));renderCategories();renderBusinesses();
