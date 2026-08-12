@@ -1,11 +1,11 @@
 {
-  "name": "Puerto Jiménez Directorio",
-  "short_name": "PJ Directorio",
-  "description": "Directorio comercial y de servicios de Puerto Jiménez, Costa Rica.",
+  "name": "Puerto Jiménez Guía",
+  "short_name": "PJ Guía",
+  "description": "Directorio comercial y de servicios de Puerto Jiménez, Península de Osa, Costa Rica.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f5f8f6",
-  "theme_color": "#0f5132",
+  "background_color": "#F6FBF2",
+  "theme_color": "#0C2A20",
   "icons": [
     {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
   ]

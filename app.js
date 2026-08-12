@@ -78,13 +78,202 @@ const businesses=[
 {id:110,name:'Aeropuerto de Puerto Jiménez',category:'otros',icon:'✈️',desc:'Aeropuerto local de Puerto Jiménez.',address:'Puerto Jiménez, Puntarenas',phone:'',whatsapp:'',hours:'Según itinerarios de vuelos'}
 ];
 
+
+/* ============================================================
+   Lógica de la interfaz — favoritos, mapa, vistas y render.
+   ============================================================ */
 let activeCategory='all';
+let currentView='list';
+let showFavsOnly=false;
+
+const FAV_KEY='pj_favoritos';
+let favs=new Set(JSON.parse(localStorage.getItem(FAV_KEY)||'[]'));
+function saveFavs(){localStorage.setItem(FAV_KEY,JSON.stringify([...favs]));}
+function toggleFav(id){if(favs.has(id)){favs.delete(id);}else{favs.add(id);}saveFavs();}
+
 const el=id=>document.getElementById(id);
 const normalize=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const catName=id=>categories.find(c=>c.id===id)?.name||'Otro';
-function renderCategories(){el('categoryGrid').innerHTML=categories.map(c=>`<button class="category-card ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="category-icon">${c.icon}</span><strong>${c.name}</strong><small>${businesses.filter(b=>b.category===c.id).length} ${businesses.filter(b=>b.category===c.id).length===1?'negocio':'negocios'}</small></button>`).join('');document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.dataset.cat;renderCategories();renderBusinesses()}));}
-function filtered(){const q=normalize(el('searchInput').value);return businesses.filter(b=>{const inCat=activeCategory==='all'||b.category===activeCategory;const hay=normalize(`${b.name} ${b.desc} ${catName(b.category)} ${b.address}`).includes(q);return inCat&&hay;});}
-function renderBusinesses(){const list=filtered();el('resultLabel').textContent=`${list.length} resultado${list.length===1?'':'s'}`;el('businessGrid').innerHTML=list.map(b=>`<article class="business-card"><div class="business-cover">${b.icon}</div><div class="business-body"><div class="business-title-row"><h3 class="business-title">${b.name}</h3>${b.featured?'<span class="badge">Destacado</span>':''}</div><p class="business-desc">${b.desc}</p><div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div><div class="card-actions"><button class="details-btn" data-id="${b.id}">Ver ficha</button><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Mapa</a></div></div></article>`).join('');el('emptyState').classList.toggle('hidden',list.length>0);document.querySelectorAll('.details-btn').forEach(btn=>btn.addEventListener('click',()=>openBusiness(Number(btn.dataset.id))));}
-function openBusiness(id){const b=businesses.find(x=>x.id===id);if(!b)return;const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';const wa=b.whatsapp?`<a href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" target="_blank" rel="noopener">WhatsApp</a>`:'';el('dialogContent').innerHTML=`<div class="dialog-hero"><div class="emoji">${b.icon}</div></div><div class="dialog-body"><p class="eyebrow dark">${catName(b.category)}</p><h2>${b.name}</h2><p>${b.desc}</p><div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}</div><div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Cómo llegar</a></div></div>`;el('businessDialog').showModal();}
-el('closeDialog').addEventListener('click',()=>el('businessDialog').close());el('businessDialog').addEventListener('click',e=>{if(e.target===el('businessDialog'))el('businessDialog').close()});el('searchInput').addEventListener('input',renderBusinesses);el('clearFilters').addEventListener('click',()=>{activeCategory='all';el('searchInput').value='';renderCategories();renderBusinesses()});el('businessCount').textContent=businesses.length;el('categoryCount').textContent=categories.length;
-let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden')});el('installBtn').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;el('installBtn').classList.add('hidden')});if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));renderCategories();renderBusinesses();
+const catIcon=id=>categories.find(c=>c.id===id)?.icon||'📍';
+const hueOf=id=>{const i=categories.findIndex(c=>c.id===id);return i<0?0:i%3;};
+
+function showToast(msg){
+  const t=el('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function renderCategories(){
+  const total=businesses.length;
+  const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">🌴</span>Todos</button>`]
+    .concat(categories.map((c,i)=>`<button class="cat-pill hue-${i%3} ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="ic">${c.icon}</span>${c.name}</button>`));
+  el('categoryGrid').innerHTML=`<button class="cat-pill fav-pill ${showFavsOnly?'active':''}" id="favToggleBtn"><span class="ic">❤️</span>Favoritos</button>`+pills.join('');
+  document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{
+    activeCategory=btn.dataset.cat;
+    renderCategories();
+    renderBusinesses();
+  }));
+  el('favToggleBtn').addEventListener('click',()=>{
+    showFavsOnly=!showFavsOnly;
+    renderCategories();
+    renderBusinesses();
+  });
+  el('categoryCount').textContent=categories.length;
+  void total;
+}
+
+function filtered(){
+  const q=normalize(el('searchInput').value);
+  return businesses.filter(b=>{
+    const inCat=activeCategory==='all'||b.category===activeCategory;
+    const inFav=!showFavsOnly||favs.has(b.id);
+    const hay=normalize(`${b.name} ${b.desc} ${catName(b.category)} ${b.address}`).includes(q);
+    return inCat&&inFav&&hay;
+  });
+}
+
+function businessCard(b){
+  const hue=hueOf(b.category);
+  const isFav=favs.has(b.id);
+  const stamp=b.featured?`<div class="stamp-badge"><span>★<br>Local</span></div>`:'';
+  const waQuick=b.whatsapp?`<a class="wa-quick" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" aria-label="Escribir por WhatsApp" title="WhatsApp">💬</a>`:'';
+  return `<article class="business-card" style="animation-delay:${Math.min(businesses.indexOf(b)%12*0.03,.3)}s">
+    <div class="card-strip hue-${hue}"></div>
+    <div class="business-cover hue-${hue}">${b.icon}
+      <button class="fav-btn ${isFav?'is-fav':''}" data-fav="${b.id}" aria-label="Guardar en favoritos">${isFav?'❤️':'🤍'}</button>
+      ${stamp}
+    </div>
+    <div class="business-body">
+      <h3 class="business-title">${b.name}</h3>
+      <p class="business-desc">${b.desc}</p>
+      <div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div>
+      <div class="card-actions">
+        <button class="details-btn" data-id="${b.id}">Ver ficha</button>
+        <a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Mapa</a>
+      </div>
+    </div>
+    ${waQuick}
+  </article>`;
+}
+
+function renderListView(list){
+  el('businessGrid').innerHTML=list.map(businessCard).join('');
+  document.querySelectorAll('.details-btn').forEach(btn=>btn.addEventListener('click',()=>openBusiness(Number(btn.dataset.id))));
+  document.querySelectorAll('[data-fav]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const id=Number(btn.dataset.fav);
+    toggleFav(id);
+    const nowFav=favs.has(id);
+    btn.textContent=nowFav?'❤️':'🤍';
+    btn.classList.toggle('is-fav',nowFav);
+    showToast(nowFav?'Agregado a favoritos ❤️':'Quitado de favoritos');
+    if(showFavsOnly)renderBusinesses();
+  }));
+}
+
+function mapQueryFor(list){
+  const q=el('searchInput').value.trim();
+  if(q)return `${q} Puerto Jiménez Costa Rica`;
+  if(activeCategory!=='all')return `${catName(activeCategory)} Puerto Jiménez Costa Rica`;
+  if(showFavsOnly)return 'Puerto Jiménez Costa Rica';
+  void list;
+  return 'Puerto Jiménez Costa Rica';
+}
+
+function renderMapView(list){
+  el('mapEmbed').src=`https://www.google.com/maps?q=${encodeURIComponent(mapQueryFor(list))}&output=embed`;
+  el('mapList').innerHTML=list.map(b=>`<a class="map-list-item" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">
+    <span class="ic">${catIcon(b.category)}</span>
+    <div><strong>${b.name}</strong><span>${b.address}</span></div>
+  </a>`).join('');
+}
+
+function renderBusinesses(){
+  const list=filtered();
+  el('resultLabel').textContent=`${list.length} resultado${list.length===1?'':'s'}`;
+  el('resultSub').textContent=showFavsOnly
+    ? 'Tus negocios guardados.'
+    : (activeCategory==='all' ? 'Explorá todos los negocios registrados en Puerto Jiménez.' : `Categoría: ${catName(activeCategory)}.`);
+  el('businessCount').textContent=businesses.length;
+
+  const isMap=currentView==='map';
+  el('businessGrid').classList.toggle('hidden',isMap);
+  el('mapView').classList.toggle('hidden',!isMap);
+
+  if(isMap){renderMapView(list);}else{renderListView(list);}
+
+  const empty=list.length===0;
+  el('emptyState').classList.toggle('hidden',!empty);
+  if(empty){
+    el('emptyTitle').textContent=showFavsOnly?'Aún no tenés favoritos':'No encontramos nada por acá';
+    el('emptyCopy').textContent=showFavsOnly?'Tocá el corazón 🤍 en cualquier negocio para guardarlo acá.':'Probá con otra categoría o borrá la búsqueda.';
+  }
+}
+
+function openBusiness(id){
+  const b=businesses.find(x=>x.id===id);
+  if(!b)return;
+  const hue=hueOf(b.category);
+  const isFav=favs.has(b.id);
+  const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';
+  const website=b.website?`<div>🌐 <a href="${b.website}" target="_blank" rel="noopener">${b.website.replace(/^https?:\/\//,'')}</a></div>`:'';
+  const wa=b.whatsapp?`<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}">💬 WhatsApp</a>`:'';
+  el('dialogContent').innerHTML=`<div class="dialog-hero hue-${hue}">
+      <span>${b.icon}</span>
+      <button class="dialog-fav" id="dialogFavBtn" data-id="${b.id}" aria-label="Guardar en favoritos">${isFav?'❤️':'🤍'}</button>
+    </div>
+    <div class="dialog-body">
+      <p class="eyebrow" style="color:var(--turquoise-dark)">${catName(b.category)}</p>
+      <h2>${b.name}</h2>
+      <p class="muted">${b.desc}</p>
+      <div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}${website}</div>
+      <div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Cómo llegar</a></div>
+    </div>`;
+  el('dialogFavBtn').addEventListener('click',()=>{
+    toggleFav(b.id);
+    const nowFav=favs.has(b.id);
+    el('dialogFavBtn').textContent=nowFav?'❤️':'🤍';
+    showToast(nowFav?'Agregado a favoritos ❤️':'Quitado de favoritos');
+  });
+  el('businessDialog').showModal();
+}
+
+el('closeDialog').addEventListener('click',()=>el('businessDialog').close());
+el('businessDialog').addEventListener('click',e=>{if(e.target===el('businessDialog'))el('businessDialog').close();});
+el('searchInput').addEventListener('input',renderBusinesses);
+el('clearFilters').addEventListener('click',()=>{
+  activeCategory='all';
+  showFavsOnly=false;
+  el('searchInput').value='';
+  renderCategories();
+  renderBusinesses();
+});
+
+el('viewListBtn').addEventListener('click',()=>{
+  currentView='list';
+  el('viewListBtn').classList.add('active');
+  el('viewMapBtn').classList.remove('active');
+  renderBusinesses();
+});
+el('viewMapBtn').addEventListener('click',()=>{
+  currentView='map';
+  el('viewMapBtn').classList.add('active');
+  el('viewListBtn').classList.remove('active');
+  renderBusinesses();
+});
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden');});
+el('installBtn').addEventListener('click',async()=>{
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  el('installBtn').classList.add('hidden');
+});
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+
+renderCategories();
+renderBusinesses();
