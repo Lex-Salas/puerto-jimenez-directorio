@@ -1,0 +1,12 @@
+{
+  "name": "Puerto Jiménez Directorio",
+  "short_name": "PJ Directorio",
+  "description": "Directorio comercial y de servicios de Puerto Jiménez, Costa Rica.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f8f6",
+  "theme_color": "#0f5132",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
