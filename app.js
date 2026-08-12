@@ -105,6 +105,14 @@ function showToast(msg){
   t._timer=setTimeout(()=>t.classList.remove('show'),2200);
 }
 
+function scrollToListings(){
+  const section=el('listingsSection');
+  const bar=document.querySelector('.filter-bar-sticky');
+  const offset=(bar?bar.offsetHeight:0)+14;
+  const top=section.getBoundingClientRect().top+window.scrollY-offset;
+  window.scrollTo({top,behavior:'smooth'});
+}
+
 function renderCategories(){
   const total=businesses.length;
   const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">🌴</span>Todos</button>`]
@@ -114,11 +122,13 @@ function renderCategories(){
     activeCategory=btn.dataset.cat;
     renderCategories();
     renderBusinesses();
+    scrollToListings();
   }));
   el('favToggleBtn').addEventListener('click',()=>{
     showFavsOnly=!showFavsOnly;
     renderCategories();
     renderBusinesses();
+    scrollToListings();
   });
   el('categoryCount').textContent=categories.length;
   void total;
