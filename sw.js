@@ -1,5 +1,5 @@
-const CACHE='pj-guia-v11';
-const ASSETS=['./','./index.html','./styles.css?v=11','./app.js?v=11','./extra-businesses-1.js?v=11','./extra-businesses-2.js?v=11','./extra-businesses-3.js?v=11','./extra-businesses-4.js?v=11','./extra-businesses-5.js?v=11','./extra-businesses-6.js?v=11','./manifest.webmanifest?v=11','./icon.svg?v=11'];
+const CACHE='pj-guia-v12';
+const ASSETS=['./','./index.html','./styles.css?v=12','./app.js?v=12','./extra-businesses-1.js?v=12','./extra-businesses-2.js?v=12','./extra-businesses-3.js?v=12','./extra-businesses-4.js?v=12','./extra-businesses-5.js?v=12','./extra-businesses-6.js?v=12','./manifest.webmanifest?v=12','./icon.svg?v=12'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))});
 self.addEventListener('activate',e=>{e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))]))});
 self.addEventListener('fetch',e=>{
