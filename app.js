@@ -148,7 +148,12 @@ const I18N={
     dialog_directions:'Cómo llegar', dialog_whatsapp:'WhatsApp',
     cta_eyebrow:'¿Tenés un negocio en Puerto Jiménez?', cta_title:'Sumate a la guía, gratis.',
     cta_copy:'Este directorio lo mantiene gente de la comunidad. Si tu negocio no aparece o querés actualizar tus datos, escribinos.',
-    cta_button:'Escribir por WhatsApp',
+    cta_button:'Agregar comercio',
+    form_eyebrow:'Directorio comunitario', form_title:'Agregá tu comercio', form_intro:'Completá los datos y prepararemos tu solicitud por WhatsApp.',
+    form_name:'Nombre del negocio', form_name_placeholder:'Ej. Soda La Amistad', form_name_required:'Escribí el nombre del negocio.', form_location:'Ubicación en Google Maps', form_location_placeholder:'https://maps.app.goo.gl/…',
+    form_location_help:'Abrí el lugar en Google Maps, tocá Compartir y copiá el enlace.', form_open_maps:'Abrir Google Maps', form_location_valid:'Ubicación válida en Google Maps ✓', form_location_invalid:'Pegá un enlace válido de Google Maps.',
+    form_photos:'Fotos del comercio', form_photos_action:'Elegir fotos', form_photos_help:'De 1 a 5 fotos, máximo 10 MB cada una.', form_photos_selected:'fotos seleccionadas', form_photo_required:'Elegí al menos una foto.', form_photo_limit:'Podés elegir un máximo de 5 fotos.', form_photo_size:'Cada foto debe pesar menos de 10 MB.',
+    form_photo_notice:'WhatsApp no permite que una web adjunte archivos automáticamente. Al abrirse el chat, enviá las fotos que acabás de elegir.', form_submit:'Continuar a WhatsApp',
     footer_text:'Puerto Jiménez Guía · Directorio comunitario de la Península de Osa, Costa Rica.',
     toast_added:'Agregado a favoritos ❤️', toast_removed:'Quitado de favoritos',
     lang_note:''
@@ -173,7 +178,12 @@ const I18N={
     dialog_directions:'Get directions', dialog_whatsapp:'WhatsApp',
     cta_eyebrow:'Do you own a business in Puerto Jiménez?', cta_title:'Join the guide, for free.',
     cta_copy:"This directory is maintained by the community. If your business isn't listed or you want to update your info, message us.",
-    cta_button:'Message us on WhatsApp',
+    cta_button:'Add a business',
+    form_eyebrow:'Community directory', form_title:'Add your business', form_intro:'Complete the details and we will prepare your WhatsApp request.',
+    form_name:'Business name', form_name_placeholder:'E.g. Soda La Amistad', form_name_required:'Enter the business name.', form_location:'Google Maps location', form_location_placeholder:'https://maps.app.goo.gl/…',
+    form_location_help:'Open the place in Google Maps, tap Share and copy the link.', form_open_maps:'Open Google Maps', form_location_valid:'Valid Google Maps location ✓', form_location_invalid:'Paste a valid Google Maps link.',
+    form_photos:'Business photos', form_photos_action:'Choose photos', form_photos_help:'1 to 5 photos, up to 10 MB each.', form_photos_selected:'photos selected', form_photo_required:'Choose at least one photo.', form_photo_limit:'You may choose up to 5 photos.', form_photo_size:'Each photo must be smaller than 10 MB.',
+    form_photo_notice:'WhatsApp does not let a website attach files automatically. When the chat opens, send the photos you just selected.', form_submit:'Continue to WhatsApp',
     footer_text:'Puerto Jiménez Guía · A community directory for the Osa Peninsula, Costa Rica.',
     toast_added:'Added to favorites ❤️', toast_removed:'Removed from favorites',
     lang_note:''
@@ -198,7 +208,12 @@ const I18N={
     dialog_directions:'Itinéraire', dialog_whatsapp:'WhatsApp',
     cta_eyebrow:'Vous avez un commerce à Puerto Jiménez ?', cta_title:'Rejoignez le guide, gratuitement.',
     cta_copy:"Cet annuaire est tenu par la communauté. Si votre commerce n'apparaît pas ou si vous voulez mettre à jour vos infos, écrivez-nous.",
-    cta_button:'Écrire sur WhatsApp',
+    cta_button:'Ajouter un commerce',
+    form_eyebrow:'Annuaire communautaire', form_title:'Ajoutez votre commerce', form_intro:'Complétez les informations et nous préparerons votre demande WhatsApp.',
+    form_name:'Nom du commerce', form_name_placeholder:'Ex. Soda La Amistad', form_name_required:'Saisissez le nom du commerce.', form_location:'Emplacement Google Maps', form_location_placeholder:'https://maps.app.goo.gl/…',
+    form_location_help:'Ouvrez le lieu dans Google Maps, touchez Partager et copiez le lien.', form_open_maps:'Ouvrir Google Maps', form_location_valid:'Emplacement Google Maps valide ✓', form_location_invalid:'Collez un lien Google Maps valide.',
+    form_photos:'Photos du commerce', form_photos_action:'Choisir des photos', form_photos_help:'De 1 à 5 photos, 10 Mo maximum chacune.', form_photos_selected:'photos sélectionnées', form_photo_required:'Choisissez au moins une photo.', form_photo_limit:'Vous pouvez choisir 5 photos maximum.', form_photo_size:'Chaque photo doit peser moins de 10 Mo.',
+    form_photo_notice:"WhatsApp ne permet pas à un site d'ajouter automatiquement des fichiers. À l'ouverture du chat, envoyez les photos choisies.", form_submit:'Continuer sur WhatsApp',
     footer_text:'Puerto Jiménez Guía · Annuaire communautaire de la péninsule d\'Osa, Costa Rica.',
     toast_added:'Ajouté aux favoris ❤️', toast_removed:'Retiré des favoris',
     lang_note:''
@@ -223,7 +238,12 @@ const I18N={
     dialog_directions:'Route anzeigen', dialog_whatsapp:'WhatsApp',
     cta_eyebrow:'Hast du ein Geschäft in Puerto Jiménez?', cta_title:'Kostenlos zum Guide hinzufügen.',
     cta_copy:'Dieses Verzeichnis wird von der Gemeinschaft gepflegt. Falls dein Geschäft fehlt oder du deine Daten aktualisieren möchtest, schreib uns.',
-    cta_button:'Auf WhatsApp schreiben',
+    cta_button:'Unternehmen hinzufügen',
+    form_eyebrow:'Gemeinschaftsverzeichnis', form_title:'Unternehmen hinzufügen', form_intro:'Fülle die Angaben aus; wir bereiten deine WhatsApp-Anfrage vor.',
+    form_name:'Name des Unternehmens', form_name_placeholder:'Z. B. Soda La Amistad', form_name_required:'Gib den Namen des Unternehmens ein.', form_location:'Standort in Google Maps', form_location_placeholder:'https://maps.app.goo.gl/…',
+    form_location_help:'Öffne den Ort in Google Maps, tippe auf Teilen und kopiere den Link.', form_open_maps:'Google Maps öffnen', form_location_valid:'Gültiger Google-Maps-Standort ✓', form_location_invalid:'Füge einen gültigen Google-Maps-Link ein.',
+    form_photos:'Fotos des Unternehmens', form_photos_action:'Fotos auswählen', form_photos_help:'1 bis 5 Fotos, jeweils maximal 10 MB.', form_photos_selected:'Fotos ausgewählt', form_photo_required:'Wähle mindestens ein Foto aus.', form_photo_limit:'Du kannst maximal 5 Fotos auswählen.', form_photo_size:'Jedes Foto muss kleiner als 10 MB sein.',
+    form_photo_notice:'WhatsApp erlaubt Webseiten nicht, Dateien automatisch anzuhängen. Sende die ausgewählten Fotos, sobald sich der Chat öffnet.', form_submit:'Weiter zu WhatsApp',
     footer_text:'Puerto Jiménez Guía · Gemeinschaftsverzeichnis der Osa-Halbinsel, Costa Rica.',
     toast_added:'Zu Favoriten hinzugefügt ❤️', toast_removed:'Von Favoriten entfernt',
     lang_note:''
@@ -472,6 +492,88 @@ el('nearMeBtn').addEventListener('click',()=>{
   },()=>{showToast(t('location_error'));el('nearMeBtn').disabled=false;},{enableHighAccuracy:false,timeout:8000,maximumAge:300000});
 });
 
+const businessFormDialog=el('businessFormDialog');
+const businessForm=el('businessForm');
+const mapsInput=el('businessMapsUrl');
+const photosInput=el('businessPhotos');
+let photoPreviewUrls=[];
+
+function isGoogleMapsUrl(value){
+  try{
+    const url=new URL(value);
+    const host=url.hostname.toLowerCase();
+    const googleHost=host==='google.com'||host.endsWith('.google.com')||/^www\.google\.[a-z.]+$/.test(host);
+    return url.protocol==='https:'&&(host==='maps.app.goo.gl'||(host==='goo.gl'&&url.pathname.startsWith('/maps'))||host==='maps.google.com'||(googleHost&&url.pathname.includes('/maps')));
+  }catch{return false;}
+}
+
+function validateMaps(){
+  const value=mapsInput.value.trim();
+  const valid=value!==''&&isGoogleMapsUrl(value);
+  mapsInput.setCustomValidity(value===''?'':(valid?'':t('form_location_invalid')));
+  el('mapsStatus').textContent=value===''?'':t(valid?'form_location_valid':'form_location_invalid');
+  el('mapsStatus').classList.toggle('is-valid',valid);
+  el('mapsStatus').classList.toggle('is-error',value!==''&&!valid);
+  return valid;
+}
+
+function clearPhotoPreviews(){
+  photoPreviewUrls.forEach(url=>URL.revokeObjectURL(url));
+  photoPreviewUrls=[];
+  el('photoPreview').replaceChildren();
+}
+
+function validatePhotos(){
+  const files=[...photosInput.files];
+  let error='';
+  if(files.length===0)error=t('form_photo_required');
+  else if(files.length>5)error=t('form_photo_limit');
+  else if(files.some(file=>!file.type.startsWith('image/')||file.size>10*1024*1024))error=t('form_photo_size');
+  photosInput.setCustomValidity(error);
+  el('photoStatus').textContent=error||`${files.length} ${t('form_photos_selected')} ✓`;
+  el('photoStatus').classList.toggle('is-valid',!error&&files.length>0);
+  el('photoStatus').classList.toggle('is-error',!!error);
+  return !error;
+}
+
+function renderPhotoPreviews(){
+  clearPhotoPreviews();
+  [...photosInput.files].slice(0,5).forEach(file=>{
+    const url=URL.createObjectURL(file);
+    photoPreviewUrls.push(url);
+    const figure=document.createElement('figure');
+    const img=document.createElement('img');
+    const caption=document.createElement('figcaption');
+    img.src=url;
+    img.alt=file.name;
+    caption.textContent=file.name;
+    figure.append(img,caption);
+    el('photoPreview').append(figure);
+  });
+}
+
+el('openBusinessForm').addEventListener('click',()=>businessFormDialog.showModal());
+el('closeBusinessForm').addEventListener('click',()=>businessFormDialog.close());
+businessFormDialog.addEventListener('click',event=>{if(event.target===businessFormDialog)businessFormDialog.close();});
+mapsInput.addEventListener('input',validateMaps);
+photosInput.addEventListener('change',()=>{validatePhotos();renderPhotoPreviews();});
+
+businessForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  const nameInput=el('businessName');
+  const name=nameInput.value.trim();
+  nameInput.setCustomValidity(name?'':t('form_name_required'));
+  const mapsValid=validateMaps();
+  const photosValid=validatePhotos();
+  if(!name||!mapsValid||!photosValid||!businessForm.reportValidity())return;
+  const mapsUrl=mapsInput.value.trim();
+  const photoCount=photosInput.files.length;
+  const message=`Hola, quiero agregar o actualizar un comercio en Puerto Jiménez Guía.\n\n*Nombre del negocio:* ${name}\n*Ubicación en Google Maps:* ${mapsUrl}\n*Fotos:* Seleccioné ${photoCount} ${photoCount===1?'foto':'fotos'} y las adjuntaré en este chat.`;
+  businessFormDialog.close();
+  window.open(`https://wa.me/50684794991?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
+});
+el('businessName').addEventListener('input',event=>event.currentTarget.setCustomValidity(''));
+
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden');});
 el('installBtn').addEventListener('click',async()=>{
@@ -481,7 +583,7 @@ el('installBtn').addEventListener('click',async()=>{
   deferredPrompt=null;
   el('installBtn').classList.add('hidden');
 });
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(reg=>reg.update()).catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=9').then(reg=>reg.update()).catch(()=>{}));
 
 el('categoryGrid').addEventListener('scroll',updateScrollFades);
 window.addEventListener('resize',updateScrollFades);
