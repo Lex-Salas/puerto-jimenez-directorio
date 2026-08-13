@@ -131,7 +131,7 @@ const I18N={
   es:{
     brand_tagline:'Guía local · Osa', install_btn:'Instalar app',
     eyebrow:'Península de Osa, Costa Rica',
-    h1_pre:'Todo Puerto Jiménez, a', h1_accent:'un tap',
+    h1_pre:'Todo Puerto Jiménez, a', h1_accent:'un Click',
     hero_copy:'La puerta de entrada a Corcovado tiene su propia guía. Comida, hospedaje, tours, tiendas y servicios reales, hechos por gente de acá.',
     search_placeholder:'Buscá un restaurante, hotel, tour…',
     stat_businesses:'negocios', stat_categories:'categorías', stat_updated:'Actualizado por la comunidad',
@@ -171,7 +171,7 @@ const I18N={
   en:{
     brand_tagline:'Local guide · Osa', install_btn:'Install app',
     eyebrow:'Osa Peninsula, Costa Rica',
-    h1_pre:'All of Puerto Jiménez, in', h1_accent:'one tap',
+    h1_pre:'All of Puerto Jiménez, in', h1_accent:'one click',
     hero_copy:'The gateway to Corcovado has its own guide. Real food, lodging, tours, shops and services, made by locals.',
     search_placeholder:'Search a restaurant, hotel, tour…',
     stat_businesses:'businesses', stat_categories:'categories', stat_updated:'Updated by the community',
@@ -211,7 +211,7 @@ const I18N={
   fr:{
     brand_tagline:'Guide local · Osa', install_btn:"Installer l'app",
     eyebrow:'Péninsule d\'Osa, Costa Rica',
-    h1_pre:'Tout Puerto Jiménez, en', h1_accent:'un geste',
+    h1_pre:'Tout Puerto Jiménez, en', h1_accent:'un clic',
     hero_copy:"La porte d'entrée de Corcovado a son propre guide. Restaurants, hébergements, excursions, boutiques et services réels, faits par des habitants.",
     search_placeholder:'Cherchez un restaurant, hôtel, excursion…',
     stat_businesses:'commerces', stat_categories:'catégories', stat_updated:'Mis à jour par la communauté',
@@ -623,7 +623,7 @@ el('installBtn').addEventListener('click',async()=>{
   deferredPrompt=null;
   el('installBtn').classList.add('hidden');
 });
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=11').then(reg=>reg.update()).catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=12').then(reg=>reg.update()).catch(()=>{}));
 
 el('categoryGrid').addEventListener('scroll',updateScrollFades);
 window.addEventListener('resize',updateScrollFades);
