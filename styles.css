@@ -155,6 +155,14 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 .transport-warning{border-color:#F3C3AD;background:#FFF9F5}
 .status-chip{align-self:flex-start;margin-top:18px;padding:7px 10px;border-radius:var(--radius-pill);background:#FFE1D3;color:var(--coral-dark);font-size:.72rem;font-weight:800}
 .transport-warning-copy{margin:14px 0 0;color:var(--ink-soft);font-size:.82rem;line-height:1.6}
+.transport-warning-copy.official-note{padding-top:12px;border-top:1px solid #F3C3AD}
+.transport-boat-schedule{grid-column:1/-1}
+.boat-day-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.boat-day{min-width:0;padding:14px;border:1px solid #F3C3AD;border-radius:var(--radius-sm);background:#fff}
+.boat-day h4{margin:0 0 10px;color:var(--coral-dark);font-family:var(--font-display);font-size:1rem}
+.boat-day .route-time+.route-time{margin-top:8px}
+.boat-route{align-items:flex-start;flex-direction:column;gap:5px}
+.boat-route strong{text-align:left;white-space:normal}
 .transport-flights{grid-column:1/-1}
 .transport-flight-intro{margin-bottom:16px}
 .airline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -282,6 +290,7 @@ footer{background:var(--ink);color:#fff;padding:36px 0}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:980px){
   .business-grid{grid-template-columns:repeat(2,1fr)}
+  .boat-day-grid{grid-template-columns:1fr}
   .airline-grid{grid-template-columns:1fr}
   .map-view{grid-template-columns:1fr}
   .map-embed-wrap{height:340px}
@@ -294,7 +303,7 @@ footer{background:var(--ink);color:#fff;padding:36px 0}
   .transport-heading{align-items:flex-start;flex-direction:column;gap:12px}
   .transport-grid{grid-template-columns:1fr}
   .transport-card,.airline-schedule{padding:18px}
-  .transport-flights{grid-column:auto}
+  .transport-flights,.transport-boat-schedule{grid-column:auto}
   .route-time{align-items:flex-start;flex-direction:column;gap:5px}
   .route-time strong{text-align:left}
   .many-times{max-width:none}
