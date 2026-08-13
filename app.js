@@ -108,6 +108,146 @@ function iconSvg(name,size){
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
 }
 
+/* ============================================================
+   Traducciones — ES / EN / FR / DE
+   ============================================================ */
+const CATEGORY_I18N={
+  comida:{es:'Comida y cafés',en:'Food & Cafés',fr:'Restauration & Cafés',de:'Essen & Cafés'},
+  hospedaje:{es:'Hospedaje',en:'Lodging',fr:'Hébergement',de:'Unterkunft'},
+  turismo:{es:'Turismo y tours',en:'Tours & Activities',fr:'Tourisme & Excursions',de:'Touren & Aktivitäten'},
+  compras:{es:'Tiendas y compras',en:'Shops & Retail',fr:'Boutiques & Achats',de:'Geschäfte & Einkaufen'},
+  servicios:{es:'Servicios',en:'Services',fr:'Services',de:'Dienstleistungen'},
+  transporte:{es:'Transporte',en:'Transport',fr:'Transport',de:'Transport'},
+  salud:{es:'Salud y bienestar',en:'Health & Wellness',fr:'Santé & Bien-être',de:'Gesundheit & Wellness'},
+  otros:{es:'Otros',en:'Other',fr:'Autres',de:'Sonstiges'},
+  supermercados:{es:'Supermercados y abarrotes',en:'Supermarkets & Grocery',fr:'Supermarchés & Épicerie',de:'Supermärkte & Lebensmittel'},
+  ferreteria:{es:'Ferreterías y construcción',en:'Hardware & Construction',fr:'Quincaillerie & Construction',de:'Baumarkt & Bau'},
+  automotriz:{es:'Automotriz y combustible',en:'Automotive & Fuel',fr:'Automobile & Carburant',de:'Auto & Kraftstoff'},
+  belleza:{es:'Belleza y bienestar',en:'Beauty & Wellness',fr:'Beauté & Bien-être',de:'Schönheit & Wellness'},
+  mascotas:{es:'Mascotas y veterinaria',en:'Pets & Veterinary',fr:'Animaux & Vétérinaire',de:'Haustiere & Tierarzt'}
+};
+
+const I18N={
+  es:{
+    brand_tagline:'Guía local · Osa', install_btn:'Instalar app',
+    eyebrow:'Península de Osa, Costa Rica',
+    h1_pre:'Todo Puerto Jiménez, a', h1_accent:'un tap',
+    hero_copy:'La puerta de entrada a Corcovado tiene su propia guía. Comida, hospedaje, tours, tiendas y servicios reales, hechos por gente de acá.',
+    search_placeholder:'Buscá un restaurante, hotel, tour…',
+    stat_businesses:'negocios', stat_categories:'categorías', stat_updated:'Actualizado por la comunidad',
+    pill_all:'Todos', pill_fav:'Favoritos',
+    view_list:'Lista', view_map:'Mapa',
+    section_default_title:'Descubrí lo local', section_default_sub:'Explorá todos los negocios registrados en Puerto Jiménez.',
+    clear_filters:'Limpiar filtros',
+    result_singular:'resultado', result_plural:'resultados',
+    sub_favorites:'Tus negocios guardados.', sub_category:'Categoría: ',
+    empty_title_default:'No encontramos nada por acá', empty_copy_default:'Probá con otra categoría o borrá la búsqueda.',
+    empty_title_fav:'Aún no tenés favoritos', empty_copy_fav:'Tocá el corazón 🤍 en cualquier negocio para guardarlo acá.',
+    card_details:'Ver ficha', card_map:'Mapa', stamp_word:'Local',
+    dialog_directions:'Cómo llegar', dialog_whatsapp:'WhatsApp',
+    cta_eyebrow:'¿Tenés un negocio en Puerto Jiménez?', cta_title:'Sumate a la guía, gratis.',
+    cta_copy:'Este directorio lo mantiene gente de la comunidad. Si tu negocio no aparece o querés actualizar tus datos, escribinos.',
+    cta_button:'Escribir por WhatsApp',
+    footer_text:'Puerto Jiménez Guía · Directorio comunitario de la Península de Osa, Costa Rica.',
+    toast_added:'Agregado a favoritos ❤️', toast_removed:'Quitado de favoritos',
+    lang_note:''
+  },
+  en:{
+    brand_tagline:'Local guide · Osa', install_btn:'Install app',
+    eyebrow:'Osa Peninsula, Costa Rica',
+    h1_pre:'All of Puerto Jiménez, in', h1_accent:'one tap',
+    hero_copy:'The gateway to Corcovado has its own guide. Real food, lodging, tours, shops and services, made by locals.',
+    search_placeholder:'Search a restaurant, hotel, tour…',
+    stat_businesses:'businesses', stat_categories:'categories', stat_updated:'Updated by the community',
+    pill_all:'All', pill_fav:'Favorites',
+    view_list:'List', view_map:'Map',
+    section_default_title:'Discover local life', section_default_sub:'Explore every business listed in Puerto Jiménez.',
+    clear_filters:'Clear filters',
+    result_singular:'result', result_plural:'results',
+    sub_favorites:'Your saved businesses.', sub_category:'Category: ',
+    empty_title_default:"We couldn't find anything", empty_copy_default:'Try another category or clear your search.',
+    empty_title_fav:"You don't have any favorites yet", empty_copy_fav:'Tap the 🤍 on any business to save it here.',
+    card_details:'View details', card_map:'Map', stamp_word:'Local',
+    dialog_directions:'Get directions', dialog_whatsapp:'WhatsApp',
+    cta_eyebrow:'Do you own a business in Puerto Jiménez?', cta_title:'Join the guide, for free.',
+    cta_copy:"This directory is maintained by the community. If your business isn't listed or you want to update your info, message us.",
+    cta_button:'Message us on WhatsApp',
+    footer_text:'Puerto Jiménez Guía · A community directory for the Osa Peninsula, Costa Rica.',
+    toast_added:'Added to favorites ❤️', toast_removed:'Removed from favorites',
+    lang_note:''
+  },
+  fr:{
+    brand_tagline:'Guide local · Osa', install_btn:"Installer l'app",
+    eyebrow:'Péninsule d\'Osa, Costa Rica',
+    h1_pre:'Tout Puerto Jiménez, en', h1_accent:'un geste',
+    hero_copy:"La porte d'entrée de Corcovado a son propre guide. Restaurants, hébergements, excursions, boutiques et services réels, faits par des habitants.",
+    search_placeholder:'Cherchez un restaurant, hôtel, excursion…',
+    stat_businesses:'commerces', stat_categories:'catégories', stat_updated:'Mis à jour par la communauté',
+    pill_all:'Tous', pill_fav:'Favoris',
+    view_list:'Liste', view_map:'Carte',
+    section_default_title:'Découvrez le coin', section_default_sub:'Explorez tous les commerces répertoriés à Puerto Jiménez.',
+    clear_filters:'Effacer les filtres',
+    result_singular:'résultat', result_plural:'résultats',
+    sub_favorites:'Vos commerces enregistrés.', sub_category:'Catégorie : ',
+    empty_title_default:"Aucun résultat", empty_copy_default:'Essayez une autre catégorie ou effacez la recherche.',
+    empty_title_fav:"Vous n'avez pas encore de favoris", empty_copy_fav:'Touchez le 🤍 sur un commerce pour le sauvegarder ici.',
+    card_details:'Voir la fiche', card_map:'Carte', stamp_word:'Local',
+    dialog_directions:'Itinéraire', dialog_whatsapp:'WhatsApp',
+    cta_eyebrow:'Vous avez un commerce à Puerto Jiménez ?', cta_title:'Rejoignez le guide, gratuitement.',
+    cta_copy:"Cet annuaire est tenu par la communauté. Si votre commerce n'apparaît pas ou si vous voulez mettre à jour vos infos, écrivez-nous.",
+    cta_button:'Écrire sur WhatsApp',
+    footer_text:'Puerto Jiménez Guía · Annuaire communautaire de la péninsule d\'Osa, Costa Rica.',
+    toast_added:'Ajouté aux favoris ❤️', toast_removed:'Retiré des favoris',
+    lang_note:''
+  },
+  de:{
+    brand_tagline:'Lokaler Guide · Osa', install_btn:'App installieren',
+    eyebrow:'Osa-Halbinsel, Costa Rica',
+    h1_pre:'Ganz Puerto Jiménez, in', h1_accent:'einem Klick',
+    hero_copy:'Das Tor zum Corcovado hat seinen eigenen Guide. Echte Restaurants, Unterkünfte, Touren, Geschäfte und Dienstleistungen von Einheimischen.',
+    search_placeholder:'Restaurant, Hotel, Tour suchen…',
+    stat_businesses:'Einträge', stat_categories:'Kategorien', stat_updated:'Von der Gemeinschaft aktualisiert',
+    pill_all:'Alle', pill_fav:'Favoriten',
+    view_list:'Liste', view_map:'Karte',
+    section_default_title:'Entdecke die Gegend', section_default_sub:'Alle Einträge in Puerto Jiménez erkunden.',
+    clear_filters:'Filter zurücksetzen',
+    result_singular:'Ergebnis', result_plural:'Ergebnisse',
+    sub_favorites:'Deine gespeicherten Einträge.', sub_category:'Kategorie: ',
+    empty_title_default:'Nichts gefunden', empty_copy_default:'Probiere eine andere Kategorie oder lösche die Suche.',
+    empty_title_fav:'Noch keine Favoriten', empty_copy_fav:'Tippe auf das 🤍 bei einem Eintrag, um ihn hier zu speichern.',
+    card_details:'Details ansehen', card_map:'Karte', stamp_word:'Lokal',
+    dialog_directions:'Route anzeigen', dialog_whatsapp:'WhatsApp',
+    cta_eyebrow:'Hast du ein Geschäft in Puerto Jiménez?', cta_title:'Kostenlos zum Guide hinzufügen.',
+    cta_copy:'Dieses Verzeichnis wird von der Gemeinschaft gepflegt. Falls dein Geschäft fehlt oder du deine Daten aktualisieren möchtest, schreib uns.',
+    cta_button:'Auf WhatsApp schreiben',
+    footer_text:'Puerto Jiménez Guía · Gemeinschaftsverzeichnis der Osa-Halbinsel, Costa Rica.',
+    toast_added:'Zu Favoriten hinzugefügt ❤️', toast_removed:'Von Favoriten entfernt',
+    lang_note:''
+  }
+};
+
+let currentLang=localStorage.getItem('pj_lang')||(navigator.language||'es').slice(0,2).toLowerCase();
+if(!I18N[currentLang])currentLang='es';
+
+function t(key){return (I18N[currentLang]&&I18N[currentLang][key])??I18N.es[key]??key;}
+
+function applyStaticI18n(){
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(elm=>{elm.textContent=t(elm.dataset.i18n);});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(elm=>{elm.placeholder=t(elm.dataset.i18nPlaceholder);});
+  el('heroH1Pre').textContent=t('h1_pre');
+  el('heroH1Accent').textContent=t('h1_accent');
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));
+}
+
+function setLang(lang){
+  currentLang=I18N[lang]?lang:'es';
+  localStorage.setItem('pj_lang',currentLang);
+  applyStaticI18n();
+  renderCategories();
+  renderBusinesses();
+}
+
 let activeCategory='all';
 let currentView='list';
 let showFavsOnly=false;
@@ -119,7 +259,7 @@ function toggleFav(id){if(favs.has(id)){favs.delete(id);}else{favs.add(id);}save
 
 const el=id=>document.getElementById(id);
 const normalize=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-const catName=id=>categories.find(c=>c.id===id)?.name||'Otro';
+const catName=id=>{const tr=CATEGORY_I18N[id];return (tr&&tr[currentLang])||categories.find(c=>c.id===id)?.name||id;};
 const hueOf=id=>{const i=categories.findIndex(c=>c.id===id);return i<0?0:i%3;};
 
 function showToast(msg){
@@ -150,9 +290,9 @@ function updateScrollFades(){
 
 function renderCategories(){
   const total=businesses.length;
-  const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">${iconSvg('todos',16)}</span>Todos</button>`]
-    .concat(categories.map((c,i)=>`<button class="cat-pill hue-${i%3} ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="ic">${iconSvg(c.id,16)}</span>${c.name}</button>`));
-  el('categoryGrid').innerHTML=`<button class="cat-pill fav-pill ${showFavsOnly?'active':''}" id="favToggleBtn"><span class="ic">${iconSvg('fav',15)}</span>Favoritos</button>`+pills.join('');
+  const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">${iconSvg('todos',16)}</span>${t('pill_all')}</button>`]
+    .concat(categories.map((c,i)=>`<button class="cat-pill hue-${i%3} ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="ic">${iconSvg(c.id,16)}</span>${catName(c.id)}</button>`));
+  el('categoryGrid').innerHTML=`<button class="cat-pill fav-pill ${showFavsOnly?'active':''}" id="favToggleBtn"><span class="ic">${iconSvg('fav',15)}</span>${t('pill_fav')}</button>`+pills.join('');
   document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{
     activeCategory=btn.dataset.cat;
     renderCategories();
@@ -183,7 +323,7 @@ function filtered(){
 function businessCard(b){
   const hue=hueOf(b.category);
   const isFav=favs.has(b.id);
-  const stamp=b.featured?`<div class="stamp-badge"><span>★<br>Local</span></div>`:'';
+  const stamp=b.featured?`<div class="stamp-badge"><span>★<br>${t('stamp_word')}</span></div>`:'';
   const waQuick=b.whatsapp?`<a class="wa-quick" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" aria-label="Escribir por WhatsApp" title="WhatsApp">💬</a>`:'';
   return `<article class="business-card" style="animation-delay:${Math.min(businesses.indexOf(b)%12*0.03,.3)}s">
     <div class="card-strip hue-${hue}"></div>
@@ -196,8 +336,8 @@ function businessCard(b){
       <p class="business-desc">${b.desc}</p>
       <div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div>
       <div class="card-actions">
-        <button class="details-btn" data-id="${b.id}">Ver ficha</button>
-        <a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Mapa</a>
+        <button class="details-btn" data-id="${b.id}">${t('card_details')}</button>
+        <a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">${t('card_map')}</a>
       </div>
     </div>
     ${waQuick}
@@ -214,7 +354,7 @@ function renderListView(list){
     const nowFav=favs.has(id);
     btn.textContent=nowFav?'❤️':'🤍';
     btn.classList.toggle('is-fav',nowFav);
-    showToast(nowFav?'Agregado a favoritos ❤️':'Quitado de favoritos');
+    showToast(nowFav?t('toast_added'):t('toast_removed'));
     if(showFavsOnly)renderBusinesses();
   }));
 }
@@ -238,10 +378,10 @@ function renderMapView(list){
 
 function renderBusinesses(){
   const list=filtered();
-  el('resultLabel').textContent=`${list.length} resultado${list.length===1?'':'s'}`;
+  el('resultLabel').textContent=`${list.length} ${list.length===1?t('result_singular'):t('result_plural')}`;
   el('resultSub').textContent=showFavsOnly
-    ? 'Tus negocios guardados.'
-    : (activeCategory==='all' ? 'Explorá todos los negocios registrados en Puerto Jiménez.' : `Categoría: ${catName(activeCategory)}.`);
+    ? t('sub_favorites')
+    : (activeCategory==='all' ? t('section_default_sub') : `${t('sub_category')}${catName(activeCategory)}.`);
   el('businessCount').textContent=businesses.length;
 
   const isMap=currentView==='map';
@@ -253,8 +393,8 @@ function renderBusinesses(){
   const empty=list.length===0;
   el('emptyState').classList.toggle('hidden',!empty);
   if(empty){
-    el('emptyTitle').textContent=showFavsOnly?'Aún no tenés favoritos':'No encontramos nada por acá';
-    el('emptyCopy').textContent=showFavsOnly?'Tocá el corazón 🤍 en cualquier negocio para guardarlo acá.':'Probá con otra categoría o borrá la búsqueda.';
+    el('emptyTitle').textContent=showFavsOnly?t('empty_title_fav'):t('empty_title_default');
+    el('emptyCopy').textContent=showFavsOnly?t('empty_copy_fav'):t('empty_copy_default');
   }
 }
 
@@ -265,7 +405,7 @@ function openBusiness(id){
   const isFav=favs.has(b.id);
   const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';
   const website=b.website?`<div>🌐 <a href="${b.website}" target="_blank" rel="noopener">${b.website.replace(/^https?:\/\//,'')}</a></div>`:'';
-  const wa=b.whatsapp?`<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}">💬 WhatsApp</a>`:'';
+  const wa=b.whatsapp?`<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}">💬 ${t('dialog_whatsapp')}</a>`:'';
   el('dialogContent').innerHTML=`<div class="dialog-hero hue-${hue}">
       <span class="dialog-icon">${iconSvg(b.category,52)}</span>
       <button class="dialog-fav" id="dialogFavBtn" data-id="${b.id}" aria-label="Guardar en favoritos">${isFav?'❤️':'🤍'}</button>
@@ -275,13 +415,13 @@ function openBusiness(id){
       <h2>${b.name}</h2>
       <p class="muted">${b.desc}</p>
       <div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}${website}</div>
-      <div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">Cómo llegar</a></div>
+      <div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">${t('dialog_directions')}</a></div>
     </div>`;
   el('dialogFavBtn').addEventListener('click',()=>{
     toggleFav(b.id);
     const nowFav=favs.has(b.id);
     el('dialogFavBtn').textContent=nowFav?'❤️':'🤍';
-    showToast(nowFav?'Agregado a favoritos ❤️':'Quitado de favoritos');
+    showToast(nowFav?t('toast_added'):t('toast_removed'));
   });
   el('businessDialog').showModal();
 }
@@ -324,5 +464,5 @@ if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serv
 el('categoryGrid').addEventListener('scroll',updateScrollFades);
 window.addEventListener('resize',updateScrollFades);
 
-renderCategories();
-renderBusinesses();
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+setLang(currentLang);
