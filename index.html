@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#0C2A20">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://lex-salas.github.io/puerto-jimenez-directorio/">
-<link rel="manifest" href="manifest.webmanifest?v=8">
-<link rel="icon" href="icon.svg?v=8" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest?v=9">
+<link rel="icon" href="icon.svg?v=9" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Puerto Jiménez Guía — Directorio local de la Península de Osa">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -122,7 +122,7 @@
       <h2 data-i18n="cta_title">Sumate a la guía, gratis.</h2>
       <p data-i18n="cta_copy">Este directorio lo mantiene gente de la comunidad. Si tu negocio no aparece o querés actualizar tus datos, escribinos.</p>
     </div>
-    <a class="primary-btn" href="https://wa.me/50684794991?text=Hola%2C%20quiero%20agregar%20o%20actualizar%20mi%20negocio%20en%20Puerto%20Jim%C3%A9nez%20Gu%C3%ADa" target="_blank" rel="noopener noreferrer" data-i18n="cta_button">Escribir por WhatsApp</a>
+    <button class="primary-btn" id="openBusinessForm" type="button" data-i18n="cta_button">Agregar comercio</button>
   </section>
 
 </main>
@@ -143,14 +143,58 @@
   <div id="dialogContent"></div>
 </dialog>
 
+<dialog class="submission-dialog" id="businessFormDialog" aria-labelledby="businessFormTitle">
+  <button class="dialog-close" id="closeBusinessForm" type="button" aria-label="Cerrar">✕</button>
+  <form id="businessForm" class="business-form">
+    <div class="form-heading">
+      <span class="form-mark" aria-hidden="true">＋</span>
+      <p class="eyebrow" data-i18n="form_eyebrow">Directorio comunitario</p>
+      <h2 id="businessFormTitle" data-i18n="form_title">Agregá tu comercio</h2>
+      <p class="muted" data-i18n="form_intro">Completá los datos y prepararemos tu solicitud por WhatsApp.</p>
+    </div>
+
+    <label class="form-field" for="businessName">
+      <span data-i18n="form_name">Nombre del negocio</span>
+      <input id="businessName" name="businessName" type="text" maxlength="100" required autocomplete="organization" data-i18n-placeholder="form_name_placeholder" placeholder="Ej. Soda La Amistad">
+    </label>
+
+    <label class="form-field" for="businessMapsUrl">
+      <span data-i18n="form_location">Ubicación en Google Maps</span>
+      <input id="businessMapsUrl" name="businessMapsUrl" type="url" inputmode="url" required aria-describedby="mapsHelp mapsStatus" data-i18n-placeholder="form_location_placeholder" placeholder="https://maps.app.goo.gl/…">
+    </label>
+    <div class="field-help-row">
+      <small id="mapsHelp" data-i18n="form_location_help">Abrí el lugar en Google Maps, tocá Compartir y copiá el enlace.</small>
+      <a href="https://www.google.com/maps/search/Puerto+Jim%C3%A9nez+Costa+Rica" target="_blank" rel="noopener noreferrer" data-i18n="form_open_maps">Abrir Google Maps</a>
+    </div>
+    <p class="field-status" id="mapsStatus" role="status" aria-live="polite"></p>
+
+    <label class="form-field photo-field" for="businessPhotos">
+      <span data-i18n="form_photos">Fotos del comercio</span>
+      <span class="photo-drop">
+        <strong data-i18n="form_photos_action">Elegir fotos</strong>
+        <small data-i18n="form_photos_help">De 1 a 5 fotos, máximo 10 MB cada una.</small>
+      </span>
+      <input id="businessPhotos" name="businessPhotos" type="file" accept="image/*" multiple required aria-describedby="photoStatus">
+    </label>
+    <p class="field-status" id="photoStatus" role="status" aria-live="polite"></p>
+    <div class="photo-preview" id="photoPreview" aria-live="polite"></div>
+
+    <div class="form-notice">
+      <span aria-hidden="true">💬</span>
+      <p data-i18n="form_photo_notice">WhatsApp no permite que una web adjunte archivos automáticamente. Al abrirse el chat, enviá las fotos que acabás de elegir.</p>
+    </div>
+    <button class="primary-btn form-submit" type="submit" data-i18n="form_submit">Continuar a WhatsApp</button>
+  </form>
+</dialog>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js?v=8"></script>
-<script src="extra-businesses-1.js?v=8"></script>
-<script src="extra-businesses-2.js?v=8"></script>
-<script src="extra-businesses-3.js?v=8"></script>
-<script src="extra-businesses-4.js?v=8"></script>
-<script src="extra-businesses-5.js?v=8"></script>
-<script src="extra-businesses-6.js?v=8"></script>
+<script src="app.js?v=9"></script>
+<script src="extra-businesses-1.js?v=9"></script>
+<script src="extra-businesses-2.js?v=9"></script>
+<script src="extra-businesses-3.js?v=9"></script>
+<script src="extra-businesses-4.js?v=9"></script>
+<script src="extra-businesses-5.js?v=9"></script>
+<script src="extra-businesses-6.js?v=9"></script>
 </body>
 </html>

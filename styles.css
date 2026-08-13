@@ -207,6 +207,23 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 .dialog-actions a{padding:12px 16px;border-radius:var(--radius-sm);background:var(--ink);color:#fff;font-weight:800;font-size:.88rem}
 .dialog-actions a.wa-link{background:#25D366}
 .dialog-actions .share-btn{padding:12px 16px;border:0;border-radius:var(--radius-sm);background:var(--turquoise-dark);color:#fff;font-weight:800;font-size:.88rem}
+.submission-dialog{border:0;padding:0;border-radius:var(--radius-lg);width:min(660px,calc(100% - 28px));max-height:calc(100dvh - 28px);box-shadow:var(--shadow-lg);overflow:auto}
+.submission-dialog::backdrop{background:rgba(12,42,32,.72);backdrop-filter:blur(4px)}
+.business-form{padding:34px;display:grid;gap:18px}
+.form-heading{padding-right:40px}.form-heading .eyebrow{color:var(--turquoise-dark);margin-bottom:8px}.form-heading h2{font-family:var(--font-display);font-size:clamp(1.7rem,5vw,2.3rem);line-height:1.05;margin:0 0 8px}.form-heading p:last-child{margin:0;line-height:1.5}
+.form-mark{width:48px;height:48px;display:grid;place-items:center;margin-bottom:18px;border-radius:16px;background:var(--yellow);font-family:var(--font-display);font-size:1.8rem;font-weight:800}
+.form-field{display:grid;gap:8px;font-weight:800;font-size:.9rem}
+.form-field input[type="text"],.form-field input[type="url"]{width:100%;padding:14px 15px;border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff;color:var(--ink);font-size:16px;outline:0}
+.form-field input[type="text"]:focus,.form-field input[type="url"]:focus{border-color:var(--turquoise);box-shadow:0 0 0 3px rgba(15,181,166,.14)}
+.field-help-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:-10px;color:var(--ink-soft)}
+.field-help-row small{line-height:1.45}.field-help-row a{flex-shrink:0;color:var(--turquoise-dark);font-size:.78rem;font-weight:800;text-decoration:underline}
+.field-status{min-height:18px;margin:-12px 0 0;font-size:.78rem;font-weight:800}.field-status.is-valid{color:var(--turquoise-dark)}.field-status.is-error{color:var(--coral-dark)}
+.photo-field{position:relative;cursor:pointer}.photo-field>span:first-child{cursor:default}.photo-field input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.photo-drop{display:grid;place-items:center;gap:4px;padding:22px;border:2px dashed var(--turquoise);border-radius:var(--radius-md);background:#F0FBF8;text-align:center;color:var(--turquoise-dark)}
+.photo-drop small{font-weight:500;color:var(--ink-soft)}.photo-field:has(input:focus-visible) .photo-drop{outline:3px solid var(--yellow);outline-offset:2px}
+.photo-preview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.photo-preview:empty{display:none}.photo-preview figure{min-width:0;margin:0}.photo-preview img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line)}.photo-preview figcaption{margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-soft);font-size:.65rem}
+.form-notice{display:flex;gap:10px;padding:14px;border-radius:var(--radius-sm);background:#FFF8DC;border:1px solid #F2D875}.form-notice p{margin:0;color:var(--ink-soft);font-size:.78rem;line-height:1.5}
+.form-submit{width:100%;padding:15px 20px}
 .noscript-note{max-width:1180px;margin:24px auto;padding:18px;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff;color:var(--ink)}
 .seo-hero{padding-bottom:20px}.seo-business,.seo-directory-page{padding:44px 0 72px;max-width:820px}.seo-business h1,.seo-directory-page h1{color:var(--ink);font-size:clamp(2rem,6vw,3.6rem);margin:24px 0 12px}.seo-business>.eyebrow{color:var(--turquoise-dark);margin-top:32px}.data-note{margin-top:28px;color:var(--ink-soft);font-size:.84rem}.seo-directory-page ol{padding-left:24px}.seo-directory-page li{padding:10px 0;border-bottom:1px solid var(--line)}.seo-directory-page a{text-decoration:underline;text-decoration-color:var(--turquoise)}
 
@@ -243,6 +260,8 @@ footer{background:var(--ink);color:#fff;padding:36px 0}
   .searchbox{position:relative;padding:0 14px}
   .searchbox input{font-size:16px}
   .business-dialog{max-height:calc(100dvh - 20px);overflow:auto}
+  .submission-dialog{width:calc(100% - 18px);max-height:calc(100dvh - 18px);border-radius:22px}
+  .business-form{padding:26px 18px}.field-help-row{display:grid;gap:6px}.photo-preview{grid-template-columns:repeat(3,minmax(0,1fr))}
   .dialog-body{padding:24px 20px}
   .dialog-actions{display:grid;grid-template-columns:1fr 1fr}
   .dialog-actions a,.dialog-actions .share-btn{text-align:center}
