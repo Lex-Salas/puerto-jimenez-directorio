@@ -84,10 +84,9 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 
 /* ---------- STICKY FILTER BAR ---------- */
 .filter-bar-sticky{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0;margin-top:-40px}
-.filter-row{display:flex;align-items:center;gap:14px}
+.filter-row{display:flex;align-items:flex-start;gap:14px}
 .pill-scroll-wrap{position:relative;flex:1;min-width:0;display:flex;align-items:center}
-.pill-scroll{display:flex;gap:8px;overflow-x:auto;flex:1;scrollbar-width:none;padding:2px 4px;scroll-behavior:smooth}
-.pill-scroll::-webkit-scrollbar{display:none}
+.pill-scroll{display:flex;flex-wrap:wrap;gap:8px;flex:1;padding:2px 4px}
 .scroll-fade{position:absolute;top:0;bottom:0;width:34px;pointer-events:none;z-index:2;opacity:0;transition:opacity .2s ease}
 .fade-left{left:0;background:linear-gradient(to right,var(--bg),rgba(246,251,242,0))}
 .fade-right{right:0;background:linear-gradient(to left,var(--bg),rgba(246,251,242,0))}
@@ -104,7 +103,7 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 .cat-pill.fav-pill{border-color:var(--coral);color:var(--coral-dark)}
 .cat-pill.fav-pill.active{background:var(--coral);color:#fff}
 
-.view-toggle{flex-shrink:0;display:flex;gap:4px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:4px}
+.view-toggle{flex-shrink:0;display:flex;gap:4px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:4px;margin-top:2px}
 .view-btn{border:0;background:transparent;padding:8px 14px;border-radius:var(--radius-pill);font-weight:700;font-size:.84rem;color:var(--ink-soft)}
 .view-btn.active{background:var(--ink);color:#fff}
 
@@ -215,7 +214,9 @@ footer{background:var(--ink);color:#fff;padding:36px 0}
   .business-grid{grid-template-columns:1fr}
   .filter-row{flex-wrap:wrap}
   .view-toggle{order:2;margin-left:auto}
-  .pill-scroll{order:1;width:100%}
+  .pill-scroll-wrap{order:1;width:100%}
+  .pill-scroll{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth}
+  .pill-scroll::-webkit-scrollbar{display:none}
   .cta-card{flex-direction:column;align-items:flex-start;padding:28px 24px}
   .section-head{flex-direction:column;align-items:flex-start}
   .filter-bar-sticky{margin-top:-30px}
