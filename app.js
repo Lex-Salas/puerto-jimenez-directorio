@@ -82,6 +82,32 @@ const businesses=[
 /* ============================================================
    Lógica de la interfaz — favoritos, mapa, vistas y render.
    ============================================================ */
+/* ============================================================
+   Set de íconos propios (SVG, estilo lineal) — reemplazan emojis.
+   ============================================================ */
+const ICON_PATHS={
+  todos:'<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6 6-2Z"/>',
+  fav:'<path fill="currentColor" stroke="none" d="M12 21s-7.5-4.6-10-9.3C.5 8 2.3 4.5 6 4.5c2 0 3.5 1 6 3.5 2.5-2.5 4-3.5 6-3.5 3.7 0 5.5 3.5 4 7.2C19.5 16.4 12 21 12 21Z"/>',
+  comida:'<path d="M7 2v7a2 2 0 0 0 2 2v11"/><path d="M7 2v5"/><path d="M11 2v5"/><path d="M17 2c-1.5 0-3 1.5-3 5s1.5 5 3 5v10"/>',
+  hospedaje:'<path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 18v2"/><path d="M21 18v2"/><path d="M3 13h18"/><path d="M7 13V9a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4"/>',
+  turismo:'<path d="M3 19l6-9 4 5 2-3 6 7"/><circle cx="17" cy="6" r="2"/>',
+  compras:'<path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  servicios:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8Z"/>',
+  transporte:'<path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13"/><rect x="3" y="13" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/>',
+  salud:'<circle cx="12" cy="12" r="9"/><path d="M8 12h2l1.5-3 2 6L15 12h1"/>',
+  otros:'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.3"/>',
+  supermercados:'<circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M3 4h2l2.2 11.5a2 2 0 0 0 2 1.5h7.4a2 2 0 0 0 2-1.6L21 8H6"/>',
+  ferreteria:'<path d="M14 6l4 4-2.5 2.5L11 8.5 14 6Z"/><path d="M12.5 9.5 4 18l2 2 8.5-8.5"/>',
+  automotriz:'<path d="M4 21V6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 21h9"/><path d="M13 10h2l2 2v6a1.5 1.5 0 0 1-3 0v-3h-1"/><path d="M6 6h5"/>',
+  belleza:'<path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/>',
+  mascotas:'<circle cx="7" cy="9" r="1.6"/><circle cx="12" cy="6.5" r="1.6"/><circle cx="17" cy="9" r="1.6"/><path d="M12 12c-3 0-5 2.2-5 4.4C7 19 9 20 12 20s5-1 5-3.6C17 14.2 15 12 12 12Z"/>'
+};
+function iconSvg(name,size){
+  size=size||20;
+  const inner=ICON_PATHS[name]||ICON_PATHS.otros;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+}
+
 let activeCategory='all';
 let currentView='list';
 let showFavsOnly=false;
@@ -94,7 +120,6 @@ function toggleFav(id){if(favs.has(id)){favs.delete(id);}else{favs.add(id);}save
 const el=id=>document.getElementById(id);
 const normalize=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const catName=id=>categories.find(c=>c.id===id)?.name||'Otro';
-const catIcon=id=>categories.find(c=>c.id===id)?.icon||'📍';
 const hueOf=id=>{const i=categories.findIndex(c=>c.id===id);return i<0?0:i%3;};
 
 function showToast(msg){
@@ -125,9 +150,9 @@ function updateScrollFades(){
 
 function renderCategories(){
   const total=businesses.length;
-  const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">🌴</span>Todos</button>`]
-    .concat(categories.map((c,i)=>`<button class="cat-pill hue-${i%3} ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="ic">${c.icon}</span>${c.name}</button>`));
-  el('categoryGrid').innerHTML=`<button class="cat-pill fav-pill ${showFavsOnly?'active':''}" id="favToggleBtn"><span class="ic">❤️</span>Favoritos</button>`+pills.join('');
+  const pills=[`<button class="cat-pill hue-2 ${activeCategory==='all'?'active':''}" data-cat="all"><span class="ic">${iconSvg('todos',16)}</span>Todos</button>`]
+    .concat(categories.map((c,i)=>`<button class="cat-pill hue-${i%3} ${activeCategory===c.id?'active':''}" data-cat="${c.id}"><span class="ic">${iconSvg(c.id,16)}</span>${c.name}</button>`));
+  el('categoryGrid').innerHTML=`<button class="cat-pill fav-pill ${showFavsOnly?'active':''}" id="favToggleBtn"><span class="ic">${iconSvg('fav',15)}</span>Favoritos</button>`+pills.join('');
   document.querySelectorAll('[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{
     activeCategory=btn.dataset.cat;
     renderCategories();
@@ -162,7 +187,7 @@ function businessCard(b){
   const waQuick=b.whatsapp?`<a class="wa-quick" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}" aria-label="Escribir por WhatsApp" title="WhatsApp">💬</a>`:'';
   return `<article class="business-card" style="animation-delay:${Math.min(businesses.indexOf(b)%12*0.03,.3)}s">
     <div class="card-strip hue-${hue}"></div>
-    <div class="business-cover hue-${hue}">${b.icon}
+    <div class="business-cover hue-${hue}"><span class="cover-icon">${iconSvg(b.category,42)}</span>
       <button class="fav-btn ${isFav?'is-fav':''}" data-fav="${b.id}" aria-label="Guardar en favoritos">${isFav?'❤️':'🤍'}</button>
       ${stamp}
     </div>
@@ -206,7 +231,7 @@ function mapQueryFor(list){
 function renderMapView(list){
   el('mapEmbed').src=`https://www.google.com/maps?q=${encodeURIComponent(mapQueryFor(list))}&output=embed`;
   el('mapList').innerHTML=list.map(b=>`<a class="map-list-item" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">
-    <span class="ic">${catIcon(b.category)}</span>
+    <span class="ic">${iconSvg(b.category,18)}</span>
     <div><strong>${b.name}</strong><span>${b.address}</span></div>
   </a>`).join('');
 }
@@ -242,7 +267,7 @@ function openBusiness(id){
   const website=b.website?`<div>🌐 <a href="${b.website}" target="_blank" rel="noopener">${b.website.replace(/^https?:\/\//,'')}</a></div>`:'';
   const wa=b.whatsapp?`<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}">💬 WhatsApp</a>`:'';
   el('dialogContent').innerHTML=`<div class="dialog-hero hue-${hue}">
-      <span>${b.icon}</span>
+      <span class="dialog-icon">${iconSvg(b.category,52)}</span>
       <button class="dialog-fav" id="dialogFavBtn" data-id="${b.id}" aria-label="Guardar en favoritos">${isFav?'❤️':'🤍'}</button>
     </div>
     <div class="dialog-body">

@@ -128,10 +128,14 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 .card-strip.hue-1{background:var(--coral)}
 .card-strip.hue-2{background:var(--ink)}
 
-.business-cover{position:relative;height:120px;display:flex;align-items:center;padding:0 18px;font-size:2.6rem;background:var(--bg)}
+.business-cover{position:relative;height:120px;display:flex;align-items:center;padding:0 18px;background:var(--bg)}
+.cover-icon{display:flex}
 .business-cover.hue-0{background:linear-gradient(135deg,#E4FAF6,#C8F0E9)}
 .business-cover.hue-1{background:linear-gradient(135deg,#FFE7DE,#FFD3C2)}
 .business-cover.hue-2{background:linear-gradient(135deg,#E6EFE9,#D2E2D8)}
+.business-cover.hue-0 .cover-icon{color:var(--turquoise-dark)}
+.business-cover.hue-1 .cover-icon{color:var(--coral-dark)}
+.business-cover.hue-2 .cover-icon{color:var(--ink)}
 
 .fav-btn{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);font-size:1.05rem;display:grid;place-items:center;transition:transform .15s ease}
 .fav-btn:active{transform:scale(.85)}
@@ -180,10 +184,14 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7.2vw,
 .business-dialog{border:0;padding:0;border-radius:var(--radius-lg);width:min(640px,calc(100% - 28px));box-shadow:var(--shadow-lg);overflow:visible}
 .business-dialog::backdrop{background:rgba(12,42,32,.65);backdrop-filter:blur(4px)}
 .dialog-close{position:absolute;right:14px;top:14px;border:0;border-radius:50%;width:38px;height:38px;background:rgba(255,255,255,.95);font-size:1.3rem;box-shadow:var(--shadow-sm);z-index:3}
-.dialog-hero{position:relative;padding:46px 30px 30px;font-size:3rem}
+.dialog-hero{position:relative;padding:46px 30px 30px;display:flex}
+.dialog-icon{display:flex}
 .dialog-hero.hue-0{background:linear-gradient(135deg,#E4FAF6,#C8F0E9)}
 .dialog-hero.hue-1{background:linear-gradient(135deg,#FFE7DE,#FFD3C2)}
 .dialog-hero.hue-2{background:linear-gradient(135deg,#E6EFE9,#D2E2D8)}
+.dialog-hero.hue-0 .dialog-icon{color:var(--turquoise-dark)}
+.dialog-hero.hue-1 .dialog-icon{color:var(--coral-dark)}
+.dialog-hero.hue-2 .dialog-icon{color:var(--ink)}
 .dialog-fav{position:absolute;bottom:-20px;right:28px;width:46px;height:46px;border-radius:50%;background:#fff;border:0;box-shadow:var(--shadow-md);font-size:1.15rem}
 .dialog-body{padding:30px}
 .dialog-body h2{font-family:var(--font-display);margin:0 0 6px;font-size:1.7rem}
