@@ -20,6 +20,8 @@ Directorio comunitario funcional. Los datos provienen de fuentes públicas y pue
 - Formulario de alta con ubicación de Google Maps y selección de fotos
 - Páginas estáticas, datos estructurados y sitemap para buscadores
 - Acceso rápido a negocios cercanos mediante la ubicación del dispositivo
+- Horarios de buses, vuelos y estado oficial de la lancha Puerto Jiménez–Golfito
+- Enlaces de reserva, contacto, fuentes y fecha de verificación de transportes
 
 ## Estructura
 
