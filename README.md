@@ -22,6 +22,8 @@ Directorio comunitario funcional. Los datos provienen de fuentes públicas y pue
 - Acceso rápido a negocios cercanos mediante la ubicación del dispositivo
 - Horarios de buses, vuelos y estado oficial de la lancha Puerto Jiménez–Golfito
 - Enlaces de reserva, contacto, fuentes y fecha de verificación de transportes
+- Compra de tiquetes San José–Puerto Jiménez mediante PASSER
+- Horario comunitario de lanchas con confirmación directa por WhatsApp
 
 ## Estructura
 

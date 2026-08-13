@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#0C2A20">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://lex-salas.github.io/puerto-jimenez-directorio/">
-<link rel="manifest" href="manifest.webmanifest?v=10">
-<link rel="icon" href="icon.svg?v=10" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest?v=11">
+<link rel="icon" href="icon.svg?v=11" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Puerto Jiménez Guía — Directorio local de la Península de Osa">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&amp;family=Manrope:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 
@@ -123,9 +123,31 @@
         </div>
         <p class="transport-note" data-i18n="transport_sj_note">Duración aproximada: 6–8 horas. Las salidas adicionales dependen de la demanda; confirmá al comprar.</p>
         <div class="transport-actions">
-          <a class="transport-primary" href="https://www.blancotiquete.com/venta/venta.php" target="_blank" rel="noopener noreferrer" data-i18n="transport_buy_ticket">Comprar tiquete</a>
+          <a class="transport-primary" href="https://passer.live/" target="_blank" rel="noopener noreferrer" data-i18n="transport_buy_passer">Comprar con PASSER</a>
+          <a href="https://play.google.com/store/apps/details?id=passer.app" target="_blank" rel="noopener noreferrer">Android</a>
+          <a href="https://apps.apple.com/cr/app/passer-technologies/id1494258458" target="_blank" rel="noopener noreferrer">iPhone</a>
           <a href="tel:+50622574121">☎ 2257-4121</a>
           <a href="https://buscobus.co.cr/horarios-y-tarifas/puerto-jimenez-san-jose-en-bus/" target="_blank" rel="noopener noreferrer" data-i18n="transport_view_source">Ver fuente</a>
+        </div>
+      </article>
+
+      <article class="transport-card">
+        <div class="transport-card-head">
+          <span class="transport-icon" aria-hidden="true">🚌</span>
+          <div>
+            <p class="transport-kind" data-i18n="transport_regional_bus">Bus regional</p>
+            <h3>Puerto Jiménez ↔ San Isidro de Pérez Zeledón</h3>
+          </div>
+        </div>
+        <p class="transport-operator">Autotransportes Blanco Lobo · <span data-i18n="transport_daily">todos los días</span></p>
+        <div class="route-times">
+          <div class="route-time"><span>San Isidro → Puerto Jiménez</span><strong><time datetime="06:30">06:30</time></strong></div>
+          <div class="route-time"><span>Puerto Jiménez → San Isidro</span><strong><time datetime="13:00">13:00</time></strong></div>
+        </div>
+        <p class="transport-note" data-i18n="transport_san_isidro_note">Duración aproximada: 2 horas 35 minutos. Sale de la Terminal TRACOPA en San Isidro.</p>
+        <div class="transport-actions">
+          <a class="transport-primary" href="https://appassets.mvtdev.com/map/188/l/2967/48315992.pdf" target="_blank" rel="noopener noreferrer" data-i18n="transport_route_stops">Horario y paradas</a>
+          <a href="tel:+50627712550">☎ 2771-2550</a>
         </div>
       </article>
 
@@ -169,7 +191,7 @@
         </div>
       </article>
 
-      <article class="transport-card transport-warning">
+      <article class="transport-card transport-warning transport-boat-schedule">
         <div class="transport-card-head">
           <span class="transport-icon warning" aria-hidden="true">🚤</span>
           <div>
@@ -177,10 +199,31 @@
             <h3>Puerto Jiménez ↔ Golfito</h3>
           </div>
         </div>
-        <span class="status-chip" data-i18n="transport_no_official_schedule">Sin horario oficial confirmado</span>
-        <p class="transport-warning-copy" data-i18n="transport_boat_warning">ARESEP informa que, al 30 de julio de 2026, la ruta no tiene un operador autorizado por el MOPT. Pueden existir traslados privados, pero no publicamos horas no verificadas.</p>
+        <p class="transport-operator">Transportes Acuáticos Tijerno Cortez</p>
+        <span class="status-chip" data-i18n="transport_community_schedule">Horario comunitario · confirmar antes de viajar</span>
+        <div class="boat-day-grid">
+          <section class="boat-day">
+            <h4 data-i18n="transport_mon_fri_long">Lunes a viernes</h4>
+            <div class="route-time boat-route"><span>Puerto Jiménez → Golfito</span><strong>06:15 · 07:45 · 11:00 · 15:00</strong></div>
+            <div class="route-time boat-route"><span>Golfito → Puerto Jiménez</span><strong>07:00 · 10:00 · 13:00 · 16:30</strong></div>
+          </section>
+          <section class="boat-day">
+            <h4 data-i18n="transport_saturday">Sábado</h4>
+            <div class="route-time boat-route"><span>Puerto Jiménez → Golfito</span><strong>07:00 · 09:30 · 14:00</strong></div>
+            <div class="route-time boat-route"><span>Golfito → Puerto Jiménez</span><strong>08:00 · 11:00 · 15:00</strong></div>
+          </section>
+          <section class="boat-day">
+            <h4 data-i18n="transport_sunday">Domingo</h4>
+            <div class="route-time boat-route"><span>Puerto Jiménez → Golfito</span><strong>07:30 · 14:00</strong></div>
+            <div class="route-time boat-route"><span>Golfito → Puerto Jiménez</span><strong>10:00 · 15:00</strong></div>
+          </section>
+        </div>
+        <p class="transport-warning-copy" data-i18n="transport_boat_source_note">Horario aportado por la comunidad. El aviso de la imagen fue publicado en 2021; confirmá cada viaje y los días feriados por WhatsApp.</p>
+        <p class="transport-warning-copy official-note" data-i18n="transport_boat_warning">ARESEP informa que, al 30 de julio de 2026, la ruta no tiene un operador autorizado por el MOPT. Por eso este horario no se presenta como oficial vigente.</p>
         <div class="transport-actions">
-          <a class="transport-primary" href="https://aresep.go.cr/cabotaje/tarifas-lanchas/" target="_blank" rel="noopener noreferrer" data-i18n="transport_official_notice">Ver aviso oficial</a>
+          <a class="transport-primary wa" href="https://wa.me/50683669143?text=Hola%2C%20quisiera%20confirmar%20el%20horario%20de%20la%20lancha%20entre%20Puerto%20Jim%C3%A9nez%20y%20Golfito." target="_blank" rel="noopener noreferrer" data-i18n="transport_confirm_whatsapp">Confirmar por WhatsApp</a>
+          <a href="tel:+50683669143">☎ 8366-9143</a>
+          <a href="https://aresep.go.cr/cabotaje/tarifas-lanchas/" target="_blank" rel="noopener noreferrer" data-i18n="transport_official_notice">Ver aviso oficial</a>
         </div>
       </article>
 
@@ -313,12 +356,12 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js?v=10"></script>
-<script src="extra-businesses-1.js?v=10"></script>
-<script src="extra-businesses-2.js?v=10"></script>
-<script src="extra-businesses-3.js?v=10"></script>
-<script src="extra-businesses-4.js?v=10"></script>
-<script src="extra-businesses-5.js?v=10"></script>
-<script src="extra-businesses-6.js?v=10"></script>
+<script src="app.js?v=11"></script>
+<script src="extra-businesses-1.js?v=11"></script>
+<script src="extra-businesses-2.js?v=11"></script>
+<script src="extra-businesses-3.js?v=11"></script>
+<script src="extra-businesses-4.js?v=11"></script>
+<script src="extra-businesses-5.js?v=11"></script>
+<script src="extra-businesses-6.js?v=11"></script>
 </body>
 </html>
