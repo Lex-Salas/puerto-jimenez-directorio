@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lex-salas.github.io/puerto-jimenez-directorio/sitemap.xml

@@ -3,10 +3,14 @@
   "short_name": "PJ Guía",
   "description": "Directorio comercial y de servicios de Puerto Jiménez, Península de Osa, Costa Rica.",
   "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "lang": "es-CR",
+  "orientation": "any",
   "display": "standalone",
   "background_color": "#F6FBF2",
   "theme_color": "#0C2A20",
   "icons": [
-    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
   ]
 }

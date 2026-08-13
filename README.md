@@ -4,7 +4,7 @@ Web app/PWA para descubrir comercios, servicios y experiencias de Puerto Jiméne
 
 ## Estado
 
-Primera versión funcional. Los negocios incluidos actualmente son datos **DEMO**, no fichas comerciales verificadas.
+Directorio comunitario funcional. Los datos provienen de fuentes públicas y pueden cambiar; los horarios y contactos deben confirmarse con cada negocio.
 
 ## Funciones
 
@@ -15,7 +15,10 @@ Primera versión funcional. Los negocios incluidos actualmente son datos **DEMO*
 - Preparado para teléfono y WhatsApp
 - Diseño responsive
 - Instalable como PWA
-- Service Worker con caché básico
+- Caché offline con actualización segura de navegación
+- Enlaces compartibles por negocio
+- Páginas estáticas, datos estructurados y sitemap para buscadores
+- Acceso rápido a negocios cercanos mediante la ubicación del dispositivo
 
 ## Estructura
 
@@ -25,15 +28,12 @@ Primera versión funcional. Los negocios incluidos actualmente son datos **DEMO*
 - `manifest.webmanifest`: configuración PWA
 - `sw.js`: soporte offline básico
 - `icon.svg`: icono inicial
+- `negocios/`: fichas estáticas indexables
+- `scripts/generate-seo.mjs`: genera fichas y sitemap a partir del directorio
 
-## Próximos pasos sugeridos
+## Actualizar las páginas para buscadores
 
-1. Sustituir datos DEMO por negocios reales verificados.
-2. Agregar fotografías y logos.
-3. Crear panel administrativo y base de datos.
-4. Añadir formulario de alta de comercios.
-5. Incorporar negocios destacados y planes comerciales.
-6. Configurar dominio y analítica.
+Después de cambiar los datos, ejecutar `node scripts/generate-seo.mjs` antes de publicar.
 
 ## Publicación rápida
 

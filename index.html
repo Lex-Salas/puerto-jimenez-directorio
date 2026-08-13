@@ -6,14 +6,24 @@
 <title>Puerto Jiménez Guía — Directorio de negocios de la Península de Osa</title>
 <meta name="description" content="Encontrá restaurantes, hospedaje, tours, tiendas y servicios en Puerto Jiménez, puerta de entrada al Parque Nacional Corcovado. Directorio local hecho a mano.">
 <meta name="theme-color" content="#0C2A20">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://lex-salas.github.io/puerto-jimenez-directorio/">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Puerto Jiménez Guía — Directorio local de la Península de Osa">
 <meta property="og:description" content="Restaurantes, hospedaje, tours, tiendas y servicios en Puerto Jiménez, Costa Rica.">
-<meta property="og:image" content="icon.svg">
-<meta name="twitter:card" content="summary">
+<meta property="og:url" content="https://lex-salas.github.io/puerto-jimenez-directorio/">
+<meta property="og:locale" content="es_CR">
+<meta property="og:site_name" content="Puerto Jiménez Guía">
+<meta property="og:image" content="https://lex-salas.github.io/puerto-jimenez-directorio/icon.svg">
+<meta property="og:image:alt" content="Puerto Jiménez Guía">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Puerto Jiménez Guía","url":"https://lex-salas.github.io/puerto-jimenez-directorio/","description":"Directorio comunitario de negocios y servicios de Puerto Jiménez, Península de Osa, Costa Rica.","inLanguage":["es","en","fr","de"],"potentialAction":{"@type":"SearchAction","target":"https://lex-salas.github.io/puerto-jimenez-directorio/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,12 +63,12 @@
 
     <div class="searchbox">
       <span aria-hidden="true">🔎</span>
-      <input id="searchInput" type="search" data-i18n-placeholder="search_placeholder" placeholder="Buscá un restaurante, hotel, tour…" autocomplete="off">
+      <input id="searchInput" type="search" data-i18n-placeholder="search_placeholder" placeholder="Buscá un restaurante, hotel, tour…" autocomplete="off" aria-label="Buscar negocios" enterkeyhint="search">
     </div>
 
     <div class="quick-stats">
-      <span><strong id="businessCount">0</strong> <span data-i18n="stat_businesses">negocios</span></span>
-      <span><strong id="categoryCount">0</strong> <span data-i18n="stat_categories">categorías</span></span>
+      <span><strong id="businessCount">158</strong> <span data-i18n="stat_businesses">negocios</span></span>
+      <span><strong id="categoryCount">13</strong> <span data-i18n="stat_categories">categorías</span></span>
       <span>📍 <span data-i18n="stat_updated">Actualizado por la comunidad</span></span>
     </div>
   </div>
@@ -72,6 +82,7 @@
       <span class="scroll-fade fade-right" aria-hidden="true"></span>
     </div>
     <div class="view-toggle" role="group" aria-label="Tipo de vista">
+      <button class="view-btn" id="nearMeBtn" type="button">⌖ <span data-i18n="near_me">Cerca de mí</span></button>
       <button class="view-btn active" data-view="list" id="viewListBtn">☰ <span data-i18n="view_list">Lista</span></button>
       <button class="view-btn" data-view="map" id="viewMapBtn">🗺️ <span data-i18n="view_map">Mapa</span></button>
     </div>
@@ -111,10 +122,12 @@
       <h2 data-i18n="cta_title">Sumate a la guía, gratis.</h2>
       <p data-i18n="cta_copy">Este directorio lo mantiene gente de la comunidad. Si tu negocio no aparece o querés actualizar tus datos, escribinos.</p>
     </div>
-    <a class="primary-btn" href="https://wa.me/50600000000?text=Hola%2C%20quiero%20agregar%20mi%20negocio%20a%20Puerto%20Jim%C3%A9nez%20Gu%C3%ADa" target="_blank" rel="noopener" data-i18n="cta_button">Escribir por WhatsApp</a>
+    <a class="primary-btn" href="https://wa.me/50684794991?text=Hola%2C%20quiero%20agregar%20o%20actualizar%20mi%20negocio%20en%20Puerto%20Jim%C3%A9nez%20Gu%C3%ADa" target="_blank" rel="noopener noreferrer" data-i18n="cta_button">Escribir por WhatsApp</a>
   </section>
 
 </main>
+
+<noscript><div class="noscript-note"><strong>Puerto Jiménez Guía:</strong> el directorio contiene 158 negocios en 13 categorías. <a href="directorio.html">Ver el directorio completo</a>. Para buscar, ver mapas y contactos, activá JavaScript en tu navegador.</div></noscript>
 
 <footer>
   <div class="wrap footer-inner">

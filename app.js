@@ -137,6 +137,7 @@ const I18N={
     stat_businesses:'negocios', stat_categories:'categorías', stat_updated:'Actualizado por la comunidad',
     pill_all:'Todos', pill_fav:'Favoritos',
     view_list:'Lista', view_map:'Mapa',
+    near_me:'Cerca de mí', share:'Compartir', share_success:'Enlace copiado', share_error:'No se pudo compartir el enlace', location_error:'No pudimos acceder a tu ubicación',
     section_default_title:'Descubrí lo local', section_default_sub:'Explorá todos los negocios registrados en Puerto Jiménez.',
     clear_filters:'Limpiar filtros',
     result_singular:'resultado', result_plural:'resultados',
@@ -161,6 +162,7 @@ const I18N={
     stat_businesses:'businesses', stat_categories:'categories', stat_updated:'Updated by the community',
     pill_all:'All', pill_fav:'Favorites',
     view_list:'List', view_map:'Map',
+    near_me:'Near me', share:'Share', share_success:'Link copied', share_error:'Could not share the link', location_error:'We could not access your location',
     section_default_title:'Discover local life', section_default_sub:'Explore every business listed in Puerto Jiménez.',
     clear_filters:'Clear filters',
     result_singular:'result', result_plural:'results',
@@ -185,6 +187,7 @@ const I18N={
     stat_businesses:'commerces', stat_categories:'catégories', stat_updated:'Mis à jour par la communauté',
     pill_all:'Tous', pill_fav:'Favoris',
     view_list:'Liste', view_map:'Carte',
+    near_me:'À proximité', share:'Partager', share_success:'Lien copié', share_error:'Impossible de partager le lien', location_error:'Impossible d’accéder à votre position',
     section_default_title:'Découvrez le coin', section_default_sub:'Explorez tous les commerces répertoriés à Puerto Jiménez.',
     clear_filters:'Effacer les filtres',
     result_singular:'résultat', result_plural:'résultats',
@@ -209,6 +212,7 @@ const I18N={
     stat_businesses:'Einträge', stat_categories:'Kategorien', stat_updated:'Von der Gemeinschaft aktualisiert',
     pill_all:'Alle', pill_fav:'Favoriten',
     view_list:'Liste', view_map:'Karte',
+    near_me:'In der Nähe', share:'Teilen', share_success:'Link kopiert', share_error:'Link konnte nicht geteilt werden', location_error:'Standort konnte nicht abgerufen werden',
     section_default_title:'Entdecke die Gegend', section_default_sub:'Alle Einträge in Puerto Jiménez erkunden.',
     clear_filters:'Filter zurücksetzen',
     result_singular:'Ergebnis', result_plural:'Ergebnisse',
@@ -259,6 +263,9 @@ function toggleFav(id){if(favs.has(id)){favs.delete(id);}else{favs.add(id);}save
 
 const el=id=>document.getElementById(id);
 const normalize=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const escapeHtml=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const businessSlug=b=>normalize(b.name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const businessUrl=b=>`${location.origin}${location.pathname}#negocio=${encodeURIComponent(businessSlug(b))}`;
 const catName=id=>{const tr=CATEGORY_I18N[id];return (tr&&tr[currentLang])||categories.find(c=>c.id===id)?.name||id;};
 const hueOf=id=>{const i=categories.findIndex(c=>c.id===id);return i<0?0:i%3;};
 
@@ -332,9 +339,9 @@ function businessCard(b){
       ${stamp}
     </div>
     <div class="business-body">
-      <h3 class="business-title">${b.name}</h3>
-      <p class="business-desc">${b.desc}</p>
-      <div class="meta"><span>${catName(b.category)}</span><span>📍 ${b.address}</span></div>
+      <h3 class="business-title">${escapeHtml(b.name)}</h3>
+      <p class="business-desc">${escapeHtml(b.desc)}</p>
+      <div class="meta"><span>${escapeHtml(catName(b.category))}</span><span>📍 ${escapeHtml(b.address)}</span></div>
       <div class="card-actions">
         <button class="details-btn" data-id="${b.id}">${t('card_details')}</button>
         <a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">${t('card_map')}</a>
@@ -403,7 +410,7 @@ function openBusiness(id){
   if(!b)return;
   const hue=hueOf(b.category);
   const isFav=favs.has(b.id);
-  const phone=b.phone?`<div>📞 <a href="tel:${b.phone}">${b.phone}</a></div>`:'';
+  const phone=b.phone?`<div>📞 <a href="tel:${b.phone.replace(/[^+\d]/g,'')}">${escapeHtml(b.phone)}</a></div>`:'';
   const website=b.website?`<div>🌐 <a href="${b.website}" target="_blank" rel="noopener">${b.website.replace(/^https?:\/\//,'')}</a></div>`:'';
   const wa=b.whatsapp?`<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/${b.whatsapp.replace(/\D/g,'')}">💬 ${t('dialog_whatsapp')}</a>`:'';
   el('dialogContent').innerHTML=`<div class="dialog-hero hue-${hue}">
@@ -412,10 +419,10 @@ function openBusiness(id){
     </div>
     <div class="dialog-body">
       <p class="eyebrow" style="color:var(--turquoise-dark)">${catName(b.category)}</p>
-      <h2>${b.name}</h2>
-      <p class="muted">${b.desc}</p>
-      <div class="dialog-list"><div>📍 ${b.address}</div><div>🕒 ${b.hours}</div>${phone}${website}</div>
-      <div class="dialog-actions">${wa}<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">${t('dialog_directions')}</a></div>
+      <h2>${escapeHtml(b.name)}</h2>
+      <p class="muted">${escapeHtml(b.desc)}</p>
+      <div class="dialog-list"><div>📍 ${escapeHtml(b.address)}</div><div>🕒 ${escapeHtml(b.hours)}</div>${phone}${website}</div>
+      <div class="dialog-actions">${wa}<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.name+' '+b.address)}">${t('dialog_directions')}</a><button class="share-btn" id="shareBusiness" type="button">↗ ${t('share')}</button></div>
     </div>`;
   el('dialogFavBtn').addEventListener('click',()=>{
     toggleFav(b.id);
@@ -423,11 +430,17 @@ function openBusiness(id){
     el('dialogFavBtn').textContent=nowFav?'❤️':'🤍';
     showToast(nowFav?t('toast_added'):t('toast_removed'));
   });
+  el('shareBusiness').addEventListener('click',async()=>{
+    const data={title:b.name,text:`${b.name} — Puerto Jiménez Guía`,url:businessUrl(b)};
+    try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(data.url);showToast(t('share_success'));}}catch(err){if(err.name!=='AbortError')showToast(t('share_error'));}
+  });
+  history.replaceState(null,'',`#negocio=${encodeURIComponent(businessSlug(b))}`);
   el('businessDialog').showModal();
 }
 
 el('closeDialog').addEventListener('click',()=>el('businessDialog').close());
 el('businessDialog').addEventListener('click',e=>{if(e.target===el('businessDialog'))el('businessDialog').close();});
+el('businessDialog').addEventListener('close',()=>{if(location.hash.startsWith('#negocio='))history.replaceState(null,'',location.pathname+location.search);});
 el('searchInput').addEventListener('input',renderBusinesses);
 el('clearFilters').addEventListener('click',()=>{
   activeCategory='all';
@@ -449,6 +462,15 @@ el('viewMapBtn').addEventListener('click',()=>{
   el('viewListBtn').classList.remove('active');
   renderBusinesses();
 });
+el('nearMeBtn').addEventListener('click',()=>{
+  if(!navigator.geolocation){showToast(t('location_error'));return;}
+  el('nearMeBtn').disabled=true;
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const {latitude,longitude}=pos.coords;
+    window.open(`https://www.google.com/maps/search/negocios/@${latitude},${longitude},15z`,'_blank','noopener,noreferrer');
+    el('nearMeBtn').disabled=false;
+  },()=>{showToast(t('location_error'));el('nearMeBtn').disabled=false;},{enableHighAccuracy:false,timeout:8000,maximumAge:300000});
+});
 
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;el('installBtn').classList.remove('hidden');});
@@ -459,10 +481,16 @@ el('installBtn').addEventListener('click',async()=>{
   deferredPrompt=null;
   el('installBtn').classList.add('hidden');
 });
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(reg=>reg.update()).catch(()=>{}));
 
 el('categoryGrid').addEventListener('scroll',updateScrollFades);
 window.addEventListener('resize',updateScrollFades);
 
 document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 setLang(currentLang);
+window.addEventListener('load',()=>{
+  const q=new URLSearchParams(location.search).get('q');
+  if(q){el('searchInput').value=q;renderBusinesses();}
+  const slug=decodeURIComponent(location.hash.replace(/^#negocio=/,''));
+  if(slug){const b=businesses.find(item=>businessSlug(item)===slug);if(b)openBusiness(b.id);}
+});
